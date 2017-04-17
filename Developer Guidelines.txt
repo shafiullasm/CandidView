@@ -1,0 +1,15 @@
+Prerequisite
+---------------------
+VS code
+Visual Studio Community Version  - https://www.visualstudio.com/vs/community/
+
+Download Git Bash
+Download Node JS
+
+
+Commands:
+---------------------
+npm install
+npm install bower -g
+npm install -g typescript
+npm start
