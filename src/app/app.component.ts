@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { InfoComponent }      from './projectInfo/info.component';
+import {NavComponent} from './shared/nav.component';
 
 @Component({
-  selector: 'my-app',
-  template: `<h1>Hello {{name}}
-  <my-info></my-info></h1>`
+  selector: 'dash-app',
+  templateUrl: './app.html' ,
 })
-export class AppComponent { name = 'Angular'; }
+export class AppComponent {  }

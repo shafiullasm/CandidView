@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-//import { Router }            from '@angular/router';
-
 import { Info } from './info';
 import { InfoService } from './info.service';
 
 @Component({
-  selector: 'my-info',
+  selector: 'dash-info',
   templateUrl: './info.component.html',
 })
 export class InfoComponent implements OnInit {
