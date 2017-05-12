@@ -1,4 +1,20 @@
-<div>{{ title }}</div>
+<!--  <div>{{ title }}</div>
 <ul>
   <li *ngFor="let hero of info">{{hero.name}}</li>
-</ul>
+</ul> -->
+
+<table >
+  <thead>
+      <th *ngFor = 'let column of gridData.Columns'>
+          <span> {{column.Display}} </span>
+      </th>
+  </thead>
+  <tbody>
+    <tr *ngFor='let row of gridData.Rows'>
+      <td *ngFor = 'let cell of row.Cells' [ngStyle]="{'background-color':cell.Background}">              
+        <span>{{cell.Display}}</span>         
+        <span>{{cell.Editable}}</span>               
+      </td>
+    </tr>
+  </tbody>
+</table>
