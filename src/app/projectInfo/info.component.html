@@ -1,19 +1,56 @@
-<!--  <div>{{ title }}</div>
-<ul>
-  <li *ngFor="let hero of info">{{hero.name}}</li>
-</ul> -->
+<table>   
+     <tr>
+       <td style="background-color:aqua">
+          <span *ngFor = 'let row of gridData.Rows'>
+             <span *ngFor = 'let cell of row.Cells'>
+                   <span>{{cell.Display}}</span>
+             </span>
+          </span>
+       </td>
+       <td style="background-color:gray">
+         <span>Weekly Dashboard  {{Date1| date: 'mediumDate'}}</span>
+      </td>
+     </tr>
+     <tr>
+       <td><p style="color:lightblue">Overall Status</p>
+        <span class="circle"> Y </span><p>Schedule </p>
+        <span class="circle"> Y </span><p>Quality </p>
+        <span class="circle"> Y </span><p>SLA </p>
+        <span class="circle"> Y </span><p>Scope </p>
+       </td>
+       <td>
+         <table>
+           <tr>
+             <td style="background-color:green">Green</td>
+             <td style="background-color:green">1</td>
+           </tr>
+           <tr>
+             <td style="background-color:yellow">Yellow</td>
+             <td style="background-color:yellow">2</td>
+           </tr>
+           <tr>
+             <td style="background-color:red">Red</td>
+             <td style="background-color:red">3</td>
+           </tr>
+         </table>
+       </td>
+     </tr>
+</table>
 
-<table >
+<table>
   <thead>
-      <th *ngFor = 'let column of gridData.Columns'>
+      <th *ngFor = 'let column of gridData.Columns' style="background-color:lightgray">
           <span> {{column.Display}} </span>
       </th>
+      <th style="background-color:lightgray"></th>
   </thead>
   <tbody>
     <tr *ngFor='let row of gridData.Rows'>
       <td *ngFor = 'let cell of row.Cells' [ngStyle]="{'background-color':cell.Background}">              
-        <span>{{cell.Display}}</span>         
-        <span>{{cell.Editable}}</span>               
+        <span contenteditable='true'>{{cell.Display}}</span>  
+        <span *ngIf = cell.Editable>
+                    <button >Edit</button>
+        </span>                        
       </td>
     </tr>
   </tbody>

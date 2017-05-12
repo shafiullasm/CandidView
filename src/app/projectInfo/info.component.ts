@@ -16,8 +16,10 @@ import {ICell} from './info' ;
 export class InfoComponent implements OnInit {
   info: Info[];
   title: string;
+  projecttitle:IGridData[];
+  Date1:string = Date();
   constructor(private infoService: InfoService) {
-    this.title = "test";
+    //this.title = "Edit";
     this.getProjectDetails();
 
   }
@@ -27,32 +29,25 @@ export class InfoComponent implements OnInit {
       Display:"Project"
     },
     {
-      Display :"Project Manager"
+      Display :"SLA"
+    },
+    {
+      Display:"Schedule"
     },
     {
       Display:"Scope"
     },
     {
-      Display:"Quality"
-    },
-    {
-      Display:"Cost"
-    },
-    {
-      Display:"Resource"
-    },
-    ],
+      Display:"Quality "
+    }],
 
     Rows:[{
        // Data: [{
             Cells:[{
                 Display:"RWT"               
-              },
+              },              
               {
-                Display:"Kady"                
-              },
-              {
-                Background:"Yellow"                
+                Background:"Yellow",                
               },
               {
                 Background:"Green"                
@@ -62,6 +57,9 @@ export class InfoComponent implements OnInit {
               },
               {
                 Background:"Green"                
+              },              
+              {
+                Editable:true;               
               }]
          // }]
        },
@@ -71,9 +69,6 @@ export class InfoComponent implements OnInit {
                 Display:"SAC"                
               },
               {
-                Display:"Anuradha",                
-              },
-              {
                 Background:"Green"                
               },
               {
@@ -86,10 +81,28 @@ export class InfoComponent implements OnInit {
                 Background:"Yellow"                
               }]
          // }]
+       },
+       {
+       // Data: [{
+            Cells:[{
+                Display:"RPS"                
+              },
+              {
+                Background:"Green"                
+              },
+              {
+                Background:"Yellow"                
+              },
+              {
+                Background:"Green"                
+              },
+              {
+                Background:"Red"                
+              }]
+         // }]
        }
        ]
-    };
-
+    };     
 
   getProjectDetails(): void {
     this.infoService.getProjectDetails().subscribe(x => this.info = x);
