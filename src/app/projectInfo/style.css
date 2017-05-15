@@ -16,9 +16,9 @@ th {
 }
 
 .circle {
-    -moz-border-radius:15px;
-    border-radius:15px;
+    -moz-border-radius:50px;
+    border-radius:50px;
     border:solid 1px black;
-    padding:5px;
+    padding-right:25px;
     background-color:yellow
 }

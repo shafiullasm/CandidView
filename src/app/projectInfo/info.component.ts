@@ -108,19 +108,19 @@ export class InfoComponent implements OnInit {
   headerData:IHeader =
   {
     status:[{
-      metricvalue:"Y",
+      
       metricName:"Scope"
     },
     {
-      metricvalue:"Y",
+  
       metricName:"Schedule"
     },
     {
-      metricvalue:"Y",
+      
       metricName:"Quality"
     },
     {
-      metricvalue:"Y",
+      
       metricName:"SLA"
     }]
   }
