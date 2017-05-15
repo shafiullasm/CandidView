@@ -47,9 +47,9 @@
   <tbody>
     <tr *ngFor='let row of gridData.Rows'>
       <td *ngFor = 'let cell of row.Cells' [ngStyle]="{'background-color':cell.Background}">              
-        <span contenteditable='true'>{{cell.Display}}</span>  
+        <span *ngIf = !cell.Editable>{{cell.Display}}</span>  
         <span *ngIf = cell.Editable>
-                    <button >Edit</button>
+                    <input type="text">
         </span>                        
       </td>
     </tr>

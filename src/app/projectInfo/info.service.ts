@@ -16,6 +16,8 @@ export class InfoService {
 
   constructor(private http: Http) { }
 
+  
+
    getProjectDetails() {
     return this.http.get(this.apiUrl).map(this.success).catch(this.handleError);
    }

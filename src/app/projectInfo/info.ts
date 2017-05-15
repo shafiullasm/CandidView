@@ -4,25 +4,33 @@ export class Info {
 }
 
 export interface IGridData {
-
-  Columns :IColumn[] ;
-  Rows : IData[];
+  Columns: IColumn[];
+  Rows: IRow[];
 }
 
 export interface IColumn {
-  Display:string;
+  Display?: string;
 }
 
-//export interface IRow {
-
-  //Data : IData[] ;
-//}
-
-export interface IData {
-  Cells:ICell[];
+export interface IRow {
+  Cells: ICell[];
 }
+
 export interface ICell {
-  Display ?: string ;
-  Background?: string ;
+  SLNo:string;
+  ProjectName:string;
+  ProgramName:string;
+  Owner:string;
+  TeamSize:number;  
+  scope: IMetrics;
+  Schedule:IMetrics;
+  Quality:IMetrics;
+  SLA:IMetrics;
+  Remarks:IMetrics;
+}
+
+export interface IMetrics {
+  Background?: string;
   Editable?: Boolean;
 }
+
