@@ -58,80 +58,52 @@ export class InfoComponent implements OnInit {
     }],
 
     Rows: [{
-      Cells: [{
-        SLNo: 1;
-        ProjectName: string;
-        ProgramName: string;
-        Owner: string;
-        TeamSize: number;  
-        scope: IMetrics;
-        Schedule: IMetrics;
-        Quality: IMetrics;
-        SLA: IMetrics;
-        Remarks: IMetrics;
-        Background: "None",
-        Editable: false
-      },
-      {
-        Display: "",
-        Background: "Green",
-        Editable: true
-      }]
-    },
-    {
-      Cells: [{
-        Display: "SAC",
-        Background: "None",
-        Editable: false
-      },
-      {
-        Display: "",
-        Background: "Green",
-        Editable: false
-      }]
+      Cells:[{
+          SLNo:1
+        },
+        {
+          ProjectName:"RWT"
+        },
+        {
+         ProgramName:"DC"
+        },
+        {
+          Owner:"Kady"
+        },
+        {
+          TeamSize:4
+        },
+        {
+          Scope:{
+            Background:"Green",
+            Editable:true
+                }
+        },
+        {
+          Schedule:{
+            Background:"Green",
+            Editable:true
+          }
+        },
+        {
+          Quality:{
+            Background:"Green",
+            Editable:true
+          }
+        },
+        {
+          SLA:{
+            Background:"Green",
+            Editable:true
+          }
+        },
+        {
+          Remarks:{
+            Background:"Green",
+            Editable:true
+          }
+        }]
+
     }]
-  };
+  } 
 }
-
-// {
-//   // Data: [{
-//   Cells: [{
-//     Display: "SAC"
-//   },
-//   {
-//     Background: "Green"
-//   },
-//   {
-//     Background: "Red"
-//   },
-//   {
-//     Background: "Green"
-//   },
-//   {
-//     Background: "Yellow"
-//   }]
-//   // }]
-// },
-// {
-//   // Data: [{
-//   Cells: [{
-//     Display: "RPS"
-//   },
-//   {
-//     Background: "Green"
-//   },
-//   {
-//     Background: "Yellow"
-//   },
-//   {
-//     Background: "Green"
-//   },
-//   {
-//     Background: "Red"
-//   }]
-//   // }]
-// }
-
-
-
-

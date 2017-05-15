@@ -3,7 +3,7 @@
        <td style="background-color:aqua">
           <span *ngFor = 'let row of gridData.Rows'>
              <span *ngFor = 'let cell of row.Cells'>
-                   <span>{{cell.Display}}</span>
+                   <span>{{cell.ProjectName}}</span>
              </span>
           </span>
        </td>
@@ -41,14 +41,18 @@
   <thead>
       <th *ngFor = 'let column of gridData.Columns' style="background-color:lightgray">
           <span> {{column.Display}} </span>
-      </th>
-      <th style="background-color:lightgray"></th>
+      </th>      
   </thead>
   <tbody>
     <tr *ngFor='let row of gridData.Rows'>
-      <td *ngFor = 'let cell of row.Cells' [ngStyle]="{'background-color':cell.Background}">              
-        <span *ngIf = !cell.Editable>{{cell.Display}}</span>  
-        <span *ngIf = cell.Editable>
+      <td *ngFor = 'let cell of row.Cells' [ngStyle]="{'background-color':cell.Scope.Background}">              
+        <span >{{cell.SLNo}}</span>
+        <span >{{cell.ProjectName}}</span>  
+         <span >{{cell.ProgramName}}</span>
+          <span >{{cell.Owner}}</span>
+           <span >{{cell.TeamSize}}</span>           
+        <span *ngIf = cell.Scope.Editable>
+                    {{cell.Scope}}
                     <input type="text">
         </span>                        
       </td>
