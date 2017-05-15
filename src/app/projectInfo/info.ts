@@ -13,7 +13,7 @@ export interface IColumn {
 }
 
 export interface IRow {
-  Cells: ICell[];
+  Cells: ICell;
 }
 
 export interface ICell {
@@ -22,10 +22,10 @@ export interface ICell {
   ProgramName?:string;
   Owner?:string;
   TeamSize?:number;  
-  Scope?: IMetrics[];
-  Schedule?:IMetrics[];
-  Quality?:IMetrics[];
-  SLA?:IMetrics[];
+  Scope?: IMetrics;
+  Schedule?:IMetrics;
+  Quality?:IMetrics;
+  SLA?:IMetrics;
   Remarks?:string;
 }
 

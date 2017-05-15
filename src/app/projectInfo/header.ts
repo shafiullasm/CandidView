@@ -2,6 +2,6 @@ export interface IHeader {
     status:IData[];
 }
 export interface IData {
-    metricvalue?:string;
+    Background?:string;
     metricName?:string;
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Info } from './info';
 import { InfoService } from './info.service';
 import { IGridData, IColumn, IRow, ICell } from './info';
-import { IHeader , IData } from './header';
+import { IHeader, IData } from './header';
 
 @Component({
   selector: 'dash-info',
@@ -59,69 +59,76 @@ export class InfoComponent implements OnInit {
     }],
 
     Rows: [{
-      Cells:[{
-          SLNo:1
+      Cells: {
+        SLNo: 1,
+        ProjectName: "RWT",
+        ProgramName: "DC",
+        Owner: "Kady",
+        TeamSize: 4,
+        Scope: {
+          Background: "Green",
+          Editable: true
         },
-        {
-          ProjectName:"RWT"
+        Schedule: {
+          Background: "Green",
+          Editable: true
         },
-        {
-         ProgramName:"DC"
+        Quality: {
+          Background: "Green",
+          Editable: true
         },
-        {
-          Owner:"Kady"
+        SLA: {
+          Background: "Green",
+          Editable: true
         },
-        {
-          TeamSize:4
+        Remarks: "Code Issue"
+      }
+    },
+    {
+      Cells: {
+        SLNo: 2,
+        ProjectName: "SAC",
+        ProgramName: "Trade",
+        Owner: "Kady",
+        TeamSize: 4,
+        Scope: {
+          Background: "Green",
+          Editable: true
         },
-        {
-          Scope:[{
-            Background:"Green"},{
-            Editable:true
-                }]
+        Schedule: {
+          Background: "Green",
+          Editable: true
         },
-        {
-          Schedule:[{
-            Background:"Green"},{
-            Editable:true
-                }]
+        Quality: {
+          Background: "Green",
+          Editable: true
         },
-        {
-          Quality:[{
-            Background:"Green"},{
-            Editable:true
-                }]
+        SLA: {
+          Background: "Green",
+          Editable: true
         },
-        {
-          SLA:[{
-            Background:"Green"},{
-            Editable:true
-                }]
-        },
-        {
-          Remarks:"Code Issue"
-        }]
-
+        Remarks: "Code Issue"
+      }
     }]
-  } ;
+  };
 
-  headerData:IHeader =
+  headerData: IHeader =
   {
-    status:[{
-      metricvalue:"Y",
-      metricName:"Scope"
+    status: [{
+      Background: "Y",
+      metricName: "Scope"
     },
     {
-      metricvalue:"Y",
-      metricName:"Schedule"
+      Background: "Y",
+      metricName: "Schedule"
     },
     {
-      metricvalue:"Y",
-      metricName:"Quality"
+      Background: "Y",
+      metricName: "Quality"
     },
     {
-      metricvalue:"Y",
-      metricName:"SLA"
+      Background: "Y",
+      metricName: "SLA"
     }]
   }
 }
