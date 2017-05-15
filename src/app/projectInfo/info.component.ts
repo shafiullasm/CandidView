@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Info } from './info';
 import { InfoService } from './info.service';
 import { IGridData, IColumn, IRow, ICell } from './info';
+import { IHeader , IData } from './header';
 
 @Component({
   selector: 'dash-info',
@@ -74,36 +75,53 @@ export class InfoComponent implements OnInit {
           TeamSize:4
         },
         {
-          Scope:{
-            Background:"Green",
+          Scope:[{
+            Background:"Green"},{
             Editable:true
-                }
+                }]
         },
         {
-          Schedule:{
-            Background:"Green",
+          Schedule:[{
+            Background:"Green"},{
             Editable:true
-          }
+                }]
         },
         {
-          Quality:{
-            Background:"Green",
+          Quality:[{
+            Background:"Green"},{
             Editable:true
-          }
+                }]
         },
         {
-          SLA:{
-            Background:"Green",
+          SLA:[{
+            Background:"Green"},{
             Editable:true
-          }
+                }]
         },
         {
-          Remarks:{
-            Background:"Green",
-            Editable:true
-          }
+          Remarks:"Code Issue"
         }]
 
     }]
-  } 
+  } ;
+
+  headerData:IHeader =
+  {
+    status:[{
+      metricvalue:"Y",
+      metricName:"Scope"
+    },
+    {
+      metricvalue:"Y",
+      metricName:"Schedule"
+    },
+    {
+      metricvalue:"Y",
+      metricName:"Quality"
+    },
+    {
+      metricvalue:"Y",
+      metricName:"SLA"
+    }]
+  }
 }
