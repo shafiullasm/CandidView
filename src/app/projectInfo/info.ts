@@ -17,20 +17,21 @@ export interface IRow {
 }
 
 export interface ICell {
-  SLNo?:number;
-  ProjectName?:string;
-  ProgramName?:string;
-  Owner?:string;
-  TeamSize?:number;  
-  Scope?: IMetrics[];
-  Schedule?:IMetrics[];
-  Quality?:IMetrics[];
-  SLA?:IMetrics[];
-  Remarks?:string;
+  SLNo?: number;
+  ProjectName?: string;
+  ProgramName?: string;
+  Owner?: string;
+  TeamSize?: number;
+  Scope?: IMetrics;
+  Schedule?: IMetrics;
+  Quality?: IMetrics;
+  SLA?: IMetrics;
+  Remarks?: string;
 }
 
 export interface IMetrics {
   Background?: string;
   Editable?: Boolean;
 }
+
 

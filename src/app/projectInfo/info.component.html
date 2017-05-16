@@ -1,81 +1,87 @@
-<table>   
-     <tr>
-       <td style="background-color:aqua">
-          <span *ngFor = 'let row of gridData.Rows'>
-             <span *ngFor = 'let cell of row.Cells'>
-                   <span>{{cell.ProjectName}}</span>
-             </span>
-          </span>
-       </td>
-       <td style="background-color:gray">
-         <span>Weekly Dashboard  {{Date1| date: 'mediumDate'}}</span>
-      </td>
-     </tr>
-     <tr>
-       <td><p style="color:lightblue">Overall Status</p>
-       <span *ngFor='let cell of headerData.status'>
-        <span class="circle">  </span><p>{{cell.metricName}} </p>        
-       </span>
-       </td>
-       <td>
-         <table>
-           <tr>
-             <td style="background-color:green">Green</td>
-             <td style="background-color:green">1</td>
-           </tr>
-           <tr>
-             <td style="background-color:yellow">Yellow</td>
-             <td style="background-color:yellow">2</td>
-           </tr>
-           <tr>
-             <td style="background-color:red">Red</td>
-             <td style="background-color:red">3</td>
-           </tr>
-         </table>
-       </td>
-     </tr>
+<table>
+  <tr>
+    <td style="background-color:aqua">
+      <span *ngFor='let row of gridData.Rows'>             
+                   <span>{{row.Cells.ProjectName}}</span>
+
+      </span>
+    </td>
+    <td style="background-color:gray">
+      <span>Weekly Dashboard  {{Date1| date: 'mediumDate'}}</span>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p style="color:lightblue">Overall Status</p>
+      <span *ngFor='let cell of headerData.status'>
+        <span class="circle"> {{cell.Background}} </span>
+      <p>{{cell.metricName}} </p>
+      </span>
+    </td>
+    <td>
+      <table>
+        <tr>
+          <td style="background-color:green">Green</td>
+          <td style="background-color:green">1</td>
+        </tr>
+        <tr>
+          <td style="background-color:yellow">Yellow</td>
+          <td style="background-color:yellow">2</td>
+        </tr>
+        <tr>
+          <td style="background-color:red">Red</td>
+          <td style="background-color:red">3</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
 </table>
 
 <table>
   <thead>
-      <th *ngFor = 'let column of gridData.Columns' style="background-color:lightgray">
-          <span> {{column.Display}} </span>
-      </th>      
+    <th style="background-color:lightgray">{{gridData.Columns[0].Display}}</th>
+    <th style="background-color:lightgray">{{gridData.Columns[1].Display}}</th>
+    <th style="background-color:lightgray">{{gridData.Columns[2].Display}}</th>
+    <th style="background-color:lightgray">{{gridData.Columns[3].Display}}</th>
+    <th style="background-color:lightgray">{{gridData.Columns[4].Display}}</th>
+    <th style="background-color:lightgray">{{gridData.Columns[5].Display}}</th>
+    <th style="background-color:lightgray">{{gridData.Columns[6].Display}}</th>
+    <th style="background-color:lightgray">{{gridData.Columns[7].Display}}</th>
+    <th style="background-color:lightgray">{{gridData.Columns[8].Display}}</th>
+    <th style="background-color:lightgray">{{gridData.Columns[9].Display}}</th>
   </thead>
   <tbody>
     <tr *ngFor='let row of gridData.Rows'>
-      <td *ngFor = 'let cell of row.Cells' >              
-        <span >{{cell.SLNo}}</span>
-        <span >{{cell.ProjectName}}</span>  
-         <span >{{cell.ProgramName}}</span>
-          <span >{{cell.Owner}}</span>
-           <span >{{cell.TeamSize}}</span> 
-           <span *ngFor = 'let metric of cell.Scope' [ngStyle]="{'background-color':metric.Background}">   
-                      {{metric.Background}}
-                <span *ngIf = metric.Editable>                          
+      <td>{{row.Cells.SLNo}}</td>
+      <td>{{row.Cells.ProjectName}}</td>
+      <td>{{row.Cells.ProgramName}}</td>
+      <td>{{row.Cells.Owner}}</td>
+      <td>{{row.Cells.TeamSize}}</td>
+      <td [ngStyle]="{'background-color':row.Cells.Scope.Background}">
+        {{row.Cells.Scope.Background}}
+        <span *ngIf=r ow.Cells.Scope.Editable>                          
                           <input type="text">
                 </span>
-          </span>     
-          <span *ngFor = 'let metric of cell.Schedule' [ngStyle]="{'background-color':metric.Background}">   
-                      {{metric.Background}}
-                <span *ngIf = metric.Editable>                          
-                          <input type="text">
-                 </span>
-          </span>   
-          <span *ngFor = 'let metric of cell.Quality' [ngStyle]="{'background-color':metric.Background}">   
-                      {{metric.Background}}
-                <span *ngIf = metric.Editable>                          
-                          <input type="text">
-                 </span>
-          </span> 
-          <span *ngFor = 'let metric of cell.SLA' [ngStyle]="{'background-color':metric.Background}">   
-                      {{metric.Background}}
-                <span *ngIf = metric.Editable>                          
-                          <input type="text">
-                 </span>
-          </span> 
-        <span>{{cell.Remarks}}</span>                    
       </td>
+      <td [ngStyle]="{'background-color':row.Cells.Schedule.Background}">
+        {{row.Cells.Schedule.Background}}
+        <span *ngIf=r ow.Cells.Schedule.Editable>                          
+                          <input type="text">
+                 </span>
+      </td>
+      <td [ngStyle]="{'background-color':row.Cells.Quality.Background}">
+        {{row.Cells.Quality.Background}}
+        <span *ngIf=r ow.Cells.Quality.Editable>                          
+                          <input type="text">
+                 </span>
+      </td>
+      <td [ngStyle]="{'background-color':row.Cells.SLA.Background}">
+        {{row.Cells.SLA.Background}}
+        <span *ngIf=r ow.Cells.SLA.Editable>                          
+                          <input type="text">
+        </span>
+      </td>
+      <td>{{row.Cells.Remarks}}</td>
     </tr>
   </tbody>
 </table>

@@ -125,3 +125,5 @@ export class InfoComponent implements OnInit {
     }]
   }
 }
+
+
