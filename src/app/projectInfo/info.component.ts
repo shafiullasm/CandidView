@@ -59,68 +59,72 @@ export class InfoComponent implements OnInit {
     }],
 
     Rows: [{
-      Cells:[{
-          SLNo:1
-        },
-        {
-          ProjectName:"RWT"
-        },
-        {
-         ProgramName:"DC"
-        },
-        {
-          Owner:"Kady"
-        },
-        {
-          TeamSize:4
-        },
-        {
-          Scope:[{
-            Background:"Green"},{
+      Cells:{
+          SLNo:1,      
+          ProjectName:"RWT",        
+          ProgramName:"DC",        
+          Owner:"Kady",        
+          TeamSize:4,       
+          Scope:{
+            Background:"Green",
             Editable:true
-                }]
-        },
-        {
-          Schedule:[{
-            Background:"Green"},{
+                },       
+          Schedule:{
+            Background:"Green",
             Editable:true
-                }]
-        },
-        {
-          Quality:[{
-            Background:"Green"},{
+                },       
+          Quality:{
+            Background:"Green",
             Editable:true
-                }]
-        },
-        {
-          SLA:[{
-            Background:"Green"},{
+                },       
+          SLA:{
+            Background:"Green",
             Editable:true
-                }]
-        },
-        {
+                },       
           Remarks:"Code Issue"
-        }]
+        }
+    },
+        {
+      Cells:{
+          SLNo:2,      
+          ProjectName:"SAC",        
+          ProgramName:"AC",        
+          Owner:"Kady",        
+          TeamSize:4,       
+          Scope:{
+            Background:"Green",
+            Editable:true
+                },       
+          Schedule:{
+            Background:"Green",
+            Editable:true
+                },       
+          Quality:{
+            Background:"Green",
+            Editable:true
+                },       
+          SLA:{
+            Background:"Green",
+            Editable:true
+                },       
+          Remarks:"Code Issue"
+        }
 
     }]
   } ;
 
   headerData:IHeader =
   {
-    status:[{
-      
+    status:[{      
       metricName:"Scope"
     },
-    {
-  
+    {  
       metricName:"Schedule"
     },
     {
-      
       metricName:"Quality"
     },
-    {
-      
+    {      
       metricName:"SLA"
     }]
   }

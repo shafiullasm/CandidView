@@ -14,7 +14,7 @@
     <td>
       <p style="color:lightblue">Overall Status</p>
       <span *ngFor='let cell of headerData.status'>
-        <span class="circle"> {{cell.Background}} </span>
+        <span class="circle"> {{cell.Background}}</span>
       <p>{{cell.metricName}} </p>
       </span>
     </td>
@@ -39,16 +39,9 @@
 
 <table>
   <thead>
-    <th style="background-color:lightgray">{{gridData.Columns[0].Display}}</th>
-    <th style="background-color:lightgray">{{gridData.Columns[1].Display}}</th>
-    <th style="background-color:lightgray">{{gridData.Columns[2].Display}}</th>
-    <th style="background-color:lightgray">{{gridData.Columns[3].Display}}</th>
-    <th style="background-color:lightgray">{{gridData.Columns[4].Display}}</th>
-    <th style="background-color:lightgray">{{gridData.Columns[5].Display}}</th>
-    <th style="background-color:lightgray">{{gridData.Columns[6].Display}}</th>
-    <th style="background-color:lightgray">{{gridData.Columns[7].Display}}</th>
-    <th style="background-color:lightgray">{{gridData.Columns[8].Display}}</th>
-    <th style="background-color:lightgray">{{gridData.Columns[9].Display}}</th>
+    <th *ngFor='let column of gridData.Columns' style="background-color:lightgray">
+             {{column.Display}}
+    </th>    
   </thead>
   <tbody>
     <tr *ngFor='let row of gridData.Rows'>
@@ -59,25 +52,25 @@
       <td>{{row.Cells.TeamSize}}</td>
       <td [ngStyle]="{'background-color':row.Cells.Scope.Background}">
         {{row.Cells.Scope.Background}}
-        <span *ngIf=r ow.Cells.Scope.Editable>                          
+        <span *ngIf= 'row.Cells.Scope.Editable'>                          
                           <input type="text">
                 </span>
       </td>
       <td [ngStyle]="{'background-color':row.Cells.Schedule.Background}">
         {{row.Cells.Schedule.Background}}
-        <span *ngIf=r ow.Cells.Schedule.Editable>                          
+        <span *ngIf='row.Cells.Schedule.Editable'>                          
                           <input type="text">
                  </span>
       </td>
       <td [ngStyle]="{'background-color':row.Cells.Quality.Background}">
         {{row.Cells.Quality.Background}}
-        <span *ngIf=r ow.Cells.Quality.Editable>                          
+        <span *ngIf='row.Cells.Quality.Editable'>                          
                           <input type="text">
                  </span>
       </td>
       <td [ngStyle]="{'background-color':row.Cells.SLA.Background}">
         {{row.Cells.SLA.Background}}
-        <span *ngIf=r ow.Cells.SLA.Editable>                          
+        <span *ngIf='row.Cells.SLA.Editable'>                          
                           <input type="text">
         </span>
       </td>

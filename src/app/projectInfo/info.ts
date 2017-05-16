@@ -13,7 +13,7 @@ export interface IColumn {
 }
 
 export interface IRow {
-  Cells: ICell[];
+  Cells: ICell;
 }
 
 export interface ICell {
