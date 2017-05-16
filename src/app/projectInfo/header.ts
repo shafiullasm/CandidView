@@ -1,7 +1,8 @@
 export interface IHeader {
-    status:IData[];
+    status: IData[];
 }
-export interface IData {   
-    metricName?:string;
+export interface IData {
+    metricName?: string;
+    background?: string;
 }
 

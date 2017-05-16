@@ -9,7 +9,7 @@ export interface IGridData {
 }
 
 export interface IColumn {
-  Display?: string;
+  display?: string;
 }
 
 export interface IRow {
@@ -17,21 +17,21 @@ export interface IRow {
 }
 
 export interface ICell {
-  SLNo?: number;
-  ProjectName?: string;
-  ProgramName?: string;
-  Owner?: string;
-  TeamSize?: number;
-  Scope?: IMetrics;
-  Schedule?: IMetrics;
-  Quality?: IMetrics;
-  SLA?: IMetrics;
-  Remarks?: string;
+  slno?: number;
+  projectName?: string;
+  programName?: string;
+  owner?: string;
+  teamSize?: number;
+  scope?: IMetrics;
+  schedule?: IMetrics;
+  quality?: IMetrics;
+  sla?: IMetrics;
+  remarks?: string;
 }
 
 export interface IMetrics {
-  Background?: string;
-  Editable?: Boolean;
+  value?: number;
+  background?: string;
 }
 
 

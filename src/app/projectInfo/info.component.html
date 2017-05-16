@@ -2,21 +2,29 @@
   <tr>
     <td style="background-color:aqua">
       <span *ngFor='let row of gridData.Rows'>             
-                   <span>{{row.Cells.ProjectName}}</span>
+                   <span>{{row.Cells.projectName}}</span>
 
       </span>
     </td>
     <td style="background-color:gray">
-      <span>Weekly Dashboard  {{Date1| date: 'mediumDate'}}</span>
+      <span>Weekly Dashboard  {{currentDate| date: 'mediumDate'}}</span>
     </td>
   </tr>
   <tr>
     <td>
-      <p style="color:lightblue">Overall Status</p>
-      <span *ngFor='let cell of headerData.status'>
-        <span class="circle"> {{cell.Background}}</span>
-      <p>{{cell.metricName}} </p>
-      </span>
+      <table>
+        <tr>
+          <td colspan="4">
+            <p style="color:lightblue">Overall Status</p>
+          </td>
+        </tr>
+        <tr>
+          <td *ngFor='let cell of headerData.status'>
+            <span class="circle">Y</span>
+            <p>{{cell.metricName}}</p>
+          </td>
+        </tr>
+      </table>
     </td>
     <td>
       <table>
@@ -40,41 +48,21 @@
 <table>
   <thead>
     <th *ngFor='let column of gridData.Columns' style="background-color:lightgray">
-             {{column.Display}}
-    </th>    
+      {{column.display}}
+    </th>
   </thead>
   <tbody>
     <tr *ngFor='let row of gridData.Rows'>
-      <td>{{row.Cells.SLNo}}</td>
-      <td>{{row.Cells.ProjectName}}</td>
-      <td>{{row.Cells.ProgramName}}</td>
-      <td>{{row.Cells.Owner}}</td>
-      <td>{{row.Cells.TeamSize}}</td>
-      <td [ngStyle]="{'background-color':row.Cells.Scope.Background}">
-        {{row.Cells.Scope.Background}}
-        <span *ngIf= 'row.Cells.Scope.Editable'>                          
-                          <input type="text">
-                </span>
-      </td>
-      <td [ngStyle]="{'background-color':row.Cells.Schedule.Background}">
-        {{row.Cells.Schedule.Background}}
-        <span *ngIf='row.Cells.Schedule.Editable'>                          
-                          <input type="text">
-                 </span>
-      </td>
-      <td [ngStyle]="{'background-color':row.Cells.Quality.Background}">
-        {{row.Cells.Quality.Background}}
-        <span *ngIf='row.Cells.Quality.Editable'>                          
-                          <input type="text">
-                 </span>
-      </td>
-      <td [ngStyle]="{'background-color':row.Cells.SLA.Background}">
-        {{row.Cells.SLA.Background}}
-        <span *ngIf='row.Cells.SLA.Editable'>                          
-                          <input type="text">
-        </span>
-      </td>
-      <td>{{row.Cells.Remarks}}</td>
+      <td>{{row.Cells.slno}}</td>
+      <td>{{row.Cells.projectName}}</td>
+      <td>{{row.Cells.programName}}</td>
+      <td>{{row.Cells.owner}}</td>
+      <td>{{row.Cells.teamSize}}</td>
+      <td [ngStyle]="{'background-color':row.Cells.scope.background}"><input type="text" [(ngModel)]=row.Cells.scope.value></td>
+      <td><input type="text" [(ngModel)]=row.Cells.schedule.value></td>
+      <td><input type="text" [(ngModel)]=row.Cells.quality.value></td>
+      <td><input type="text" [(ngModel)]=row.Cells.sla.value></td>
+      <td>{{row.Cells.remarks}}</td>
     </tr>
   </tbody>
 </table>
