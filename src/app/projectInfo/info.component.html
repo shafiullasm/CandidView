@@ -1,18 +1,18 @@
 <table>
   <tr>
-    <td style="background-color:aqua">
+    <td class="status-header">
       <span *ngFor='let row of gridData.Rows'>             
                    <span>{{row.Cells.projectName}}</span>
 
       </span>
     </td>
     <td style="background-color:gray">
-      <span>Weekly Dashboard  {{currentDate| date: 'mediumDate'}}</span>
+      <h5>Weekly Dashboard  <p style="text-align:right; margin-top:-15px">{{currentDate| date: 'mediumDate'}}</p></h5>     
     </td>
   </tr>
-  <tr>
+  <tr style="background-color:white">
     <td>
-      <table>
+      <table border="0" class="status">
         <tr>
           <td colspan="4">
             <p style="color:lightblue">Overall Status</p>
@@ -20,14 +20,14 @@
         </tr>
         <tr>
           <td *ngFor='let cell of headerData.status'>
-            <span class="circle">Y</span>
-            <p>{{cell.metricName}}</p>
-          </td>
+            <div class="circle">Y</div>
+            <p style="color:#9A989C">{{cell.metricName}}</p>
+          </td> 
         </tr>
       </table>
     </td>
     <td>
-      <table>
+      <table style="width:100px; margin-left:40px">
         <tr>
           <td style="background-color:green">Green</td>
           <td style="background-color:green">1</td>
@@ -45,19 +45,19 @@
   </tr>
 </table>
 
-<table>
+<table style="border:1px solid #939593">
   <thead>
-    <th *ngFor='let column of gridData.Columns' style="background-color:lightgray">
+    <th *ngFor='let column of gridData.Columns' style="background-color:lightgray; color:#686667">
       {{column.display}}
     </th>
   </thead>
   <tbody>
     <tr *ngFor='let row of gridData.Rows'>
-      <td>{{row.Cells.slno}}</td>
+      <td style="background-color:#2D72B6; color:#ffffff" width="40px">{{row.Cells.slno}}</td>
       <td>{{row.Cells.projectName}}</td>
       <td>{{row.Cells.programName}}</td>
       <td>{{row.Cells.owner}}</td>
-      <td>{{row.Cells.teamSize}}</td>
+      <td style="text-align:right">{{row.Cells.teamSize}}</td>
       <td [ngStyle]="{'background-color':row.Cells.scope.background}"><input type="text" [(ngModel)]=row.Cells.scope.value></td>
       <td><input type="text" [(ngModel)]=row.Cells.schedule.value></td>
       <td><input type="text" [(ngModel)]=row.Cells.quality.value></td>
