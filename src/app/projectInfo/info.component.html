@@ -3,61 +3,60 @@
     <td class="status-header">
       <span *ngFor='let row of gridData.Rows'>             
                    <span>{{row.Cells.projectName}}</span>
-
       </span>
     </td>
-    <td style="background-color:gray">
-      <h5>Weekly Dashboard  <p style="text-align:right; margin-top:-15px">{{currentDate| date: 'mediumDate'}}</p></h5>     
+    <td class="weekdash-header">
+      <h5>Weekly Dashboard  <p class="text-align">{{currentDate| date: 'mediumDate'}}</p></h5>     
     </td>
   </tr>
-  <tr style="background-color:white">
+  <tr>
     <td>
       <table border="0" class="status">
         <tr>
           <td colspan="4">
-            <p style="color:lightblue">Overall Status</p>
+            <p class="color-blue">Overall Status</p>
           </td>
         </tr>
         <tr>
           <td *ngFor='let cell of headerData.status'>
             <div class="circle">Y</div>
-            <p style="color:#9A989C">{{cell.metricName}}</p>
+            <p class="color-gray">{{cell.metricName}}</p>
           </td> 
         </tr>
       </table>
     </td>
     <td>
-      <table style="width:100px; margin-left:40px">
+      <table class="weekdash-table">
         <tr>
-          <td style="background-color:green">Green</td>
-          <td style="background-color:green">1</td>
+          <td class="weekdash-green">Green</td>
+          <td class="weekdash-green">1</td>
         </tr>
         <tr>
-          <td style="background-color:yellow">Yellow</td>
-          <td style="background-color:yellow">2</td>
+          <td class="weekdash-yellow">Yellow</td>
+          <td class="weekdash-yellow">2</td>
         </tr>
         <tr>
-          <td style="background-color:red">Red</td>
-          <td style="background-color:red">3</td>
+          <td class="weekdash-red">Red</td>
+          <td class="weekdash-red">0</td>
         </tr>
       </table>
     </td>
   </tr>
 </table>
 
-<table style="border:1px solid #939593">
+<table>
   <thead>
-    <th *ngFor='let column of gridData.Columns' style="background-color:lightgray; color:#686667">
+    <th *ngFor='let column of gridData.Columns' class="grid-header">
       {{column.display}}
     </th>
   </thead>
   <tbody>
     <tr *ngFor='let row of gridData.Rows'>
-      <td style="background-color:#2D72B6; color:#ffffff" width="40px">{{row.Cells.slno}}</td>
+      <td class="grid-sno">{{row.Cells.slno}}</td>
       <td>{{row.Cells.projectName}}</td>
       <td>{{row.Cells.programName}}</td>
       <td>{{row.Cells.owner}}</td>
-      <td style="text-align:right">{{row.Cells.teamSize}}</td>
+      <td class="text-align">{{row.Cells.teamSize}}</td>
       <td [ngStyle]="{'background-color':row.Cells.scope.background}"><input type="text" [(ngModel)]=row.Cells.scope.value></td>
       <td><input type="text" [(ngModel)]=row.Cells.schedule.value></td>
       <td><input type="text" [(ngModel)]=row.Cells.quality.value></td>

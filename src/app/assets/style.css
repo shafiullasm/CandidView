@@ -1,0 +1,64 @@
+table  {
+    border:2px;
+    width: 100%;
+    border:1px solid #939593;
+}
+th, td {
+    text-align: left;
+    padding: 5px;
+    border:1px solid #939593;   
+}
+.circle {
+    -moz-border-radius:25px;
+       border-radius: 25px;
+    padding: 5px 5px 5px 8px;
+    background-color: yellow;
+    height: 25px;
+    width: 25px;
+    margin-bottom: 10px;
+}
+.status tr td{
+    border:none;
+    background-color: #ffffff;
+}
+.status-header{
+    background-color:#00B2F1;
+    width:500px;
+    height:40px;
+}
+.grid-sno {
+    background-color:#2D72B6; 
+    color:#ffffff;
+    width:40px;
+}
+.grid-header{
+    background-color:lightgray;
+     color:#686667;
+}
+.weekdash-green{
+    background-color:green;
+}
+.weekdash-yellow{
+    background-color:yellow;
+}
+.weekdash-red{
+    background-color:red;
+}
+.weekdash-table{
+     width:100px;
+     margin-left:40px;
+}
+.weekdash-header{
+    background-color:gray;
+}
+.text-align{
+    text-align:right;
+    margin-top:-15px;
+}
+.color-blue{
+    color:lightblue;
+}
+.color-gray{
+    color:#9A989C;
+}
+

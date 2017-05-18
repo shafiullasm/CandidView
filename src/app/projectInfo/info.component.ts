@@ -7,7 +7,7 @@ import { IHeader } from './header';
 @Component({
   selector: 'dash-info',
   templateUrl: './info.component.html',
-  styleUrls: ['./style.css'],
+  styleUrls: ['app/assets/style.css'],
 })
 export class InfoComponent implements OnInit {
   currentDate: string = Date();
