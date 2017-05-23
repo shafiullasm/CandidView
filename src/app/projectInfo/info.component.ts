@@ -12,7 +12,7 @@ import { IMetricsMaster } from './metrics-master';
 export class InfoComponent implements OnInit {
   currentDate: string = Date();
   gridData: IGridData;
-  metricsMaster[]: IMetricsMaster;
+  metricsMaster: IMetricsMaster[];
 
   constructor(public infoService: InfoService, public metricsService: MetricsMasterService) {
   }

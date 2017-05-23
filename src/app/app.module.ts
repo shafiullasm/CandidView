@@ -13,7 +13,7 @@ import { Statuscomponent } from './weeklyreport/status.component';
 
 @NgModule({
   imports: [BrowserModule, HttpModule, routing, FormsModule],
-  declarations: [AppComponent, InfoComponent, NavComponent, statuscomponent],
+  declarations: [AppComponent, InfoComponent, NavComponent, Statuscomponent],
   providers: [InfoService, MetricsMasterService],
   bootstrap: [AppComponent]
 })
