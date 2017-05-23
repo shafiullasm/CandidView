@@ -3,6 +3,7 @@ import { InfoService } from './info.service'
 import { ProjectData } from './projectdata';
 import { IGridData } from './info';
 import { IHeader } from './header';
+//import {ActivatedRoute,Params} from '@angular/router';
 
 @Component({
   selector: 'dash-info',

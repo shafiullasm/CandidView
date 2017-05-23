@@ -7,12 +7,13 @@ import { InfoComponent } from './projectinfo/info.component';
 import { InfoService } from './projectinfo/info.service';
 import { routing } from './app.routing';
 import { NavComponent } from './shared/nav.component';
+import {statuscomponent} from './weeklyreport/status.component';
 
 
 
 @NgModule({
   imports: [BrowserModule, HttpModule, routing, FormsModule],
-  declarations: [AppComponent, InfoComponent, NavComponent],
+  declarations: [AppComponent, InfoComponent, NavComponent,statuscomponent],
   providers: [InfoService],
   bootstrap: [AppComponent]
 })

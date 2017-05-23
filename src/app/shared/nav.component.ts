@@ -4,4 +4,8 @@ import { routing } from '../app.routing';
   selector: 'dash-navbar',
   templateUrl: './nav.html'
 })
-export class NavComponent { }
+export class NavComponent
+ {
+   
+  
+  }
