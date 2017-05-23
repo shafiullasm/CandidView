@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { InfoService } from './info.service'
-import { ProjectData } from './projectdata';
+import { InfoService } from './info.service';
+import { MetricsMasterService } from './metrics-master.service';
 import { IGridData } from './info';
-import { IHeader } from './header';
-//import {ActivatedRoute,Params} from '@angular/router';
+import { IMetricsMaster } from './metrics-master';
 
 @Component({
   selector: 'dash-info',
@@ -12,20 +11,26 @@ import { IHeader } from './header';
 })
 export class InfoComponent implements OnInit {
   currentDate: string = Date();
-  projectdata: ProjectData;
   gridData: IGridData;
-  headerData: IHeader;
+  metricsMaster[]: IMetricsMaster;
 
-  constructor(private infoService: InfoService) {
-    this.projectdata = new ProjectData();
-    this.gridData = this.projectdata.gridData;
-    this.headerData = this.projectdata.headerData;
+  constructor(public infoService: InfoService, public metricsService: MetricsMasterService) {
+  }
+
+  ngOnInit() {
+    this.getMetricsMatserDetails();
+    this.getProjectDetails();
   }
   getProjectDetails(): void {
-    // this.infoService.getProjectDetails().subscribe(x => this.info = x);
+    this.infoService.getProjectDetails().subscribe(
+      data => this.gridData = data
+    );
   }
-  ngOnInit(): void {
-    // this.getProjectDetails();
+
+  getMetricsMatserDetails(): void {
+    this.metricsService.getMetricsMasterInfo().subscribe(
+      data => this.metricsMaster = data
+    );
   }
 }
 

@@ -1,11 +1,6 @@
-export class Info {
-  id: any;
-  name: string;
-}
-
 export interface IGridData {
-  Columns: IColumn[];
-  Rows: IRow[];
+  columns: IColumn[];
+  rows: IRow[];
 }
 
 export interface IColumn {
@@ -13,10 +8,6 @@ export interface IColumn {
 }
 
 export interface IRow {
-  Cells: ICell;
-}
-
-export interface ICell {
   slno?: number;
   projectName?: string;
   programName?: string;

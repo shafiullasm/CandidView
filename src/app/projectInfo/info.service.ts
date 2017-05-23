@@ -6,21 +6,19 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Rx';
 
-import { Info } from './info';
+import { IGridData } from './info';
 
 @Injectable()
 export class InfoService {
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private apiUrl = 'http://localhost:64565/Api/Values';  // URL to web api
+  private apiUrl = 'http://localhost:3090/api/projectinfo/GetProjectInfo';  // URL to web api
 
   constructor(private http: Http) { }
 
-  
-
-   getProjectDetails() {
+  getProjectDetails() {
     return this.http.get(this.apiUrl).map(this.success).catch(this.handleError);
-   }
+  }
 
   handleError(error: any) {
     console.error('An error occurred', error); // for demo purposes only
@@ -28,7 +26,7 @@ export class InfoService {
   }
 
   success(res: any) {
-    return res.json() as Info[];
+    return res.json() as IGridData[];
   }
 }
 

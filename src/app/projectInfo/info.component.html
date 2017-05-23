@@ -1,12 +1,14 @@
-<table>
+<table *ngIf="gridData && metricsMaster">
   <tr>
     <td class="status-header">
-      <span *ngFor='let row of gridData.Rows'>             
-                   <span>{{row.Cells.projectName}}</span>
+      <span *ngFor='let row of gridData.rows'>             
+                   <span>{{row.projectName}}</span>
       </span>
     </td>
     <td class="weekdash-header">
-      <h5>Weekly Dashboard  <p class="text-align">{{currentDate| date: 'mediumDate'}}</p></h5>     
+      <h5>Weekly Dashboard
+        <p class="text-align">{{currentDate| date: 'mediumDate'}}</p>
+      </h5>
     </td>
   </tr>
   <tr>
@@ -18,10 +20,10 @@
           </td>
         </tr>
         <tr>
-          <td *ngFor='let cell of headerData.status'>
+          <td *ngFor='let cell of metricsMaster'>
             <div class="circle">Y</div>
             <p class="color-gray">{{cell.metricName}}</p>
-          </td> 
+          </td>
         </tr>
       </table>
     </td>
@@ -44,24 +46,24 @@
   </tr>
 </table>
 
-<table>
+<table *ngIf="gridData">
   <thead>
-    <th *ngFor='let column of gridData.Columns' class="grid-header">
+    <th *ngFor='let column of gridData.columns' class="grid-header">
       {{column.display}}
     </th>
   </thead>
   <tbody>
-    <tr *ngFor='let row of gridData.Rows'>
-      <td class="grid-sno">{{row.Cells.slno}}</td>
-      <td>{{row.Cells.projectName}}</td>
-      <td>{{row.Cells.programName}}</td>
-      <td>{{row.Cells.owner}}</td>
-      <td class="text-align">{{row.Cells.teamSize}}</td>
-      <td [ngStyle]="{'background-color':row.Cells.scope.background}"><input type="text" [(ngModel)]=row.Cells.scope.value></td>
-      <td><input type="text" [(ngModel)]=row.Cells.schedule.value></td>
-      <td><input type="text" [(ngModel)]=row.Cells.quality.value></td>
-      <td><input type="text" [(ngModel)]=row.Cells.sla.value></td>
-      <td>{{row.Cells.remarks}}</td>
+    <tr *ngFor='let row of gridData.rows'>
+      <td class="grid-sno">{{row.slno}}</td>
+      <td>{{row.projectName}}</td>
+      <td>{{row.programName}}</td>
+      <td>{{row.owner}}</td>
+      <td class="text-align">{{row.teamSize}}</td>
+      <td [ngStyle]="{'background-color':row.scope.background}"><input type="text" [(ngModel)]=row.scope.value></td>
+      <td><input type="text" [(ngModel)]=row.schedule.value></td>
+      <td><input type="text" [(ngModel)]=row.quality.value></td>
+      <td><input type="text" [(ngModel)]=row.sla.value></td>
+      <td>{{row.remarks}}</td>
     </tr>
   </tbody>
 </table>

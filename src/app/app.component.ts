@@ -5,7 +5,4 @@ import {NavComponent} from './shared/nav.component';
   selector: 'dash-app',
   templateUrl: './app.html' ,
 })
-export class AppComponent 
-{
-
-}
+export class AppComponent {  }
