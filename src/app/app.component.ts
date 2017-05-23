@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {NavComponent} from './shared/nav.component';
+import { NavComponent } from './shared/nav.component';
 
 @Component({
   selector: 'dash-app',
-  templateUrl: './app.html' ,
+  templateUrl: './app.html',
 })
 export class AppComponent {  }

@@ -15,7 +15,7 @@ export class InfoService {
   private apiUrl = 'http://localhost:3090/api/projectinfo/GetProjectInfo';  // URL to web api
 
   constructor(private http: Http) { }
-
+  
   getProjectDetails() {
     return this.http.get(this.apiUrl).map(this.success).catch(this.handleError);
   }

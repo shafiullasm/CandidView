@@ -1,8 +1,95 @@
 <table>
   <tr>
-    <td class="status-header"></td>
     <td class="weekdash-header">
       <h5>Weekly Dashboard Status <p class="text-align">{{currentDate| date: 'mediumDate'}}</p></h5>     
     </td>
   </tr>
 </table>
+<label class="color-blue">Highlights</label>
+<div class="scrollit">
+<table>
+    <thead>
+    <th *ngFor='let column of highlightgridData.Columns' class="grid-header">
+      {{column.display}}
+    </th>
+  </thead>
+    <tbody >
+            <tr *ngFor='let row of highlightgridData.Rows'>
+                <td>  {{row.Cells.accomplishments}} </td>
+                 <td> {{row.Cells.inprogress}} </td>
+                 <td>  {{row.Cells.upcommingmilestones}}  </td>
+            </tr>           
+    </tbody>
+</table>
+</div>
+<label class="color-blue">Risks/Issues/Dependencies</label>
+<div class="scrollitrisk">
+<table>
+    <thead>
+    <th *ngFor='let column of riskGridData.Columns' class="grid-header">
+      {{column.display}}
+    </th>
+  </thead>
+    <tbody>
+        <tr *ngFor='let row of riskGridData.Rows'>
+            <td>{{row.Cells.sno}} </td>
+            <td> {{row.Cells.type}} </td>
+            <td> {{row.Cells.description}} </td>
+            <td>{{row.Cells.owner}} </td>
+            <td> {{row.Cells.exposure}} </td>
+            <td>  {{row.Cells.status}}  </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<label class="color-blue">Timelines</label>
+<div class="scrollittimeline">
+<table>
+    <thead>
+        <th class="grid-header" >
+           <span> WorkStream</span>
+        </th>
+         <th class="grid-header" >
+           <span> Sprint Completion 4/19</span>
+        </th>
+        <th class="grid-header">
+           <span> Code Freeze 4/20</span>
+        </th>
+        <th class="grid-header">
+           <span> Rel.Integration 4/24</span>
+        </th>
+        <th class="grid-header">
+           <span> UAT 5/4</span>
+        </th>
+        <th class="grid-header">
+           <span> Pre-Prod 5/8</span>
+        </th>
+        <th class="grid-header">
+           <span> Prod 5/17</span>
+        </th>
+    </thead>
+    <tbody>
+        <tr><td>EAC Big Web</td></tr>
+        <tr><td>EAC Mobile Web</td></tr>
+        <tr><td>Global Mobile Web</td></tr>
+        <tr><td>Global Big Web</td></tr>
+        <tr><td>SPS</td></tr>
+        <tr>
+            <td colspan="5" class="text-align">
+                <span class="color-black">Not Started</span>
+           
+                 <span class="bgcolor-blue"> On Track</span>
+           
+                 <span class="weekdash-yellow"> Risk/Issue</span>
+           
+                 <span class ="weekdash-red"> Critical</span>
+            </td>
+        </tr>
+       
+    </tbody>
+</table>
+ 
+</div>
+
+
+        

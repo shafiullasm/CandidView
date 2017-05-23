@@ -62,3 +62,26 @@ th, td {
     color:#9A989C;
 }
 
+.color-black
+{
+    background-color:black;
+    color: white;
+}
+.bgcolor-blue
+{
+    background-color: #00B2F1;
+    color: white;
+}
+
+.scrollit {
+    overflow:scroll;
+    height:110px;
+}
+.scrollitrisk {
+    overflow:scroll;
+    height:240px;
+}
+.scrollittimeline {
+    overflow:scroll;
+    height:180px;
+}

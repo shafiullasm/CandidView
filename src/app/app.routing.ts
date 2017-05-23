@@ -6,6 +6,7 @@ const appRoutes: Routes =
     [   
      { path: '', component: InfoComponent },
      { path: 'report', component: Statuscomponent }
+
     ];
 
 
