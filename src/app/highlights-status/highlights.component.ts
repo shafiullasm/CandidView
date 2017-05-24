@@ -4,7 +4,7 @@ import { IHighlightsStatus } from './highlights.status';
 
 @Component({
     selector: 'dash-highlights-status',
-    templateUrl: './highlights.component.html',
+    templateUrl: './highlights.html',
     styleUrls: ['app/assets/style.css'],
 })
 

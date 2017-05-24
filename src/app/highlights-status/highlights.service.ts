@@ -12,7 +12,7 @@ import { IHighlightsStatus } from './highlights.status';
 export class HighlightsService {
 
     private headers = new Headers({ 'Content-Type': 'application/json' });
-    private apiUrl = 'http://localhost:3090/api/projectinfo/GetProjectInfo';  // URL to web api
+    private apiUrl = 'http://localhost:3090/api/status/GetHighlightsStatus';  // URL to web api
 
     constructor(private http: Http) { }
 
