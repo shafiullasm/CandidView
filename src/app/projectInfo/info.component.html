@@ -1,8 +1,8 @@
-<table *ngIf="gridData && metricsMaster">
+<table *ngIf="projectStatus && metricsMaster">
   <tr>
     <td class="status-header">
-      <span *ngFor='let row of gridData.rows'>             
-                   <span>{{row.projectName}}</span>
+      <span *ngFor='let status of projectStatus'>             
+                   <span>{{status.businessUnit}}</span>
       </span>
     </td>
     <td class="weekdash-header">
@@ -20,9 +20,9 @@
           </td>
         </tr>
         <tr>
-          <td *ngFor='let cell of metricsMaster'>
+          <td *ngFor='let metric of metricsMaster'>
             <div class="circle">Y</div>
-            <p class="color-gray">{{cell.metricName}}</p>
+            <p class="color-gray">{{metric.metricName}}</p>
           </td>
         </tr>
       </table>
@@ -46,24 +46,42 @@
   </tr>
 </table>
 
-<table *ngIf="gridData">
+<table *ngIf="projectStatus">
   <thead>
-    <th *ngFor='let column of gridData.columns' class="grid-header">
-      {{column.display}}
+    <th class="grid-header">
+      #
+    </th>
+    <th class="grid-header">
+      SchwabBU
+    </th>
+    <th class="grid-header">
+      Program
+    </th>
+    <th class="grid-header">
+      Owners
+    </th>
+    <th class="grid-header">
+      TeamSize
+    </th>
+    <th *ngFor='let metric of metricsMaster' class="grid-header">
+      {{metric.metricName}}
+    </th>
+    <th class="grid-header">
+      Remarks
     </th>
   </thead>
   <tbody>
-    <tr *ngFor='let row of gridData.rows'>
-      <td class="grid-sno">{{row.slno}}</td>
-      <td>{{row.projectName}}</td>
-      <td>{{row.programName}}</td>
-      <td>{{row.owner}}</td>
-      <td class="text-align">{{row.teamSize}}</td>
-      <td [ngStyle]="{'background-color':row.scope.background}"><input type="text" [(ngModel)]=row.scope.value></td>
-      <td><input type="text" [(ngModel)]=row.schedule.value></td>
-      <td><input type="text" [(ngModel)]=row.quality.value></td>
-      <td><input type="text" [(ngModel)]=row.sla.value></td>
-      <td>{{row.remarks}}</td>
+    <tr *ngFor='let status of projectStatus'>
+      <td class="grid-sno">{{status.slno}}</td>
+      <td>{{status.businessUnit}}</td>
+      <td>{{status.programName}}</td>
+      <td>{{status.owner}}</td>
+      <td class="text-align">{{status.teamSize}}</td>
+      <td [ngStyle]="{'background-color':status.scope.background}"><input type="text" [(ngModel)]=status.scope.value></td>
+      <td><input type="text" [(ngModel)]=status.schedule.value></td>
+      <td><input type="text" [(ngModel)]=status.quality.value></td>
+      <td><input type="text" [(ngModel)]=status.sla.value></td>
+      <td>{{status.remarks}}</td>
     </tr>
   </tbody>
 </table>

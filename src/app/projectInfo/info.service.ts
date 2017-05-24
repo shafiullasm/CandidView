@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Rx';
 
-import { IGridData } from './info';
+import { IProjectStatus } from './project-status';
 
 @Injectable()
 export class InfoService {
@@ -26,7 +26,7 @@ export class InfoService {
   }
 
   success(res: any) {
-    return res.json() as IGridData[];
+    return res.json() as IProjectStatus[];
   }
 }
 

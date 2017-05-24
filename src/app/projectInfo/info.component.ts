@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InfoService } from './info.service';
 import { MetricsMasterService } from './metrics-master.service';
-import { IGridData } from './info';
+import { IProjectStatus } from './project-status';
 import { IMetricsMaster } from './metrics-master';
 
 @Component({
@@ -11,7 +11,7 @@ import { IMetricsMaster } from './metrics-master';
 })
 export class InfoComponent implements OnInit {
   currentDate: string = Date();
-  gridData: IGridData;
+  projectStatus: IProjectStatus[];
   metricsMaster: IMetricsMaster[];
 
   constructor(public infoService: InfoService, public metricsService: MetricsMasterService) {
@@ -23,7 +23,7 @@ export class InfoComponent implements OnInit {
   }
   getProjectDetails(): void {
     this.infoService.getProjectDetails().subscribe(
-      data => this.gridData = data
+      data => this.projectStatus = data
     );
   }
 
