@@ -4,17 +4,27 @@ export interface IProjectStatus {
   programName?: string;
   owner?: string;
   teamSize?: number;
-  scope?: IMetrics;
-  schedule?: IMetrics;
-  quality?: IMetrics;
-  sla?: IMetrics;
+  scope?: number;
+  schedule?: number;
+  quality?: IMetricQuality;
+  sla?: IMetricSLA;
   remarks?: string;
 }
 
-export interface IMetrics {
-  value?: number;
-  background?: string;
+export interface IMetricQuality {
+  defectLeakage?:number;
+  productionDefect?:number;
+  fdnDefects?:number;
+  securityDefects?:number;
 }
-
+export interface IMetricSLA {
+  scheduleAdherence?:number;
+  defectDensityNonProd?:number;
+  sev1DefectLeakageNonProd?:number;
+  defectDensityProd?:number;
+  sev1DefectLeakageProd?:number;
+  sev2DefectLeakageProd?:number;
+  defectRejectionRate?:number;
+}
 
 
