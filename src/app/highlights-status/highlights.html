@@ -1,0 +1,23 @@
+<label class="color-blue">Highlights</label>
+<div class="scrollit">
+    <table *ngIf=" highlightsstatus">
+        <thead>
+            <th class="grid-header">
+                Accomplishments
+            </th>
+            <th class="grid-header">
+                InProgress
+            </th>
+            <th class="grid-header">
+                UpcommingMilestones
+            </th>
+        </thead>
+        <tbody>
+            <tr *ngFor='let status of  highlightsstatus'>
+                <td> {{status.accomplishments}} </td>
+                <td> {{status.inprogress}} </td>
+                <td> {{status.upcommingmilestones}} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
