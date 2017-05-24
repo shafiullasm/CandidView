@@ -22,26 +22,7 @@
     </tbody>
 </table>
 </div>
-<label class="color-blue">Risks/Issues/Dependencies</label>
-<div class="scrollitrisk">
-<table>
-    <thead>
-    <th *ngFor='let column of riskGridData.Columns' class="grid-header">
-      {{column.display}}
-    </th>
-  </thead>
-    <tbody>
-        <tr *ngFor='let row of riskGridData.Rows'>
-            <td>{{row.Cells.sno}} </td>
-            <td> {{row.Cells.type}} </td>
-            <td> {{row.Cells.description}} </td>
-            <td>{{row.Cells.owner}} </td>
-            <td> {{row.Cells.exposure}} </td>
-            <td>  {{row.Cells.status}}  </td>
-        </tr>
-    </tbody>
-</table>
-</div>
+<dash-risk-status></dash-risk-status>
 <label class="color-blue">Timelines</label>
 <div class="scrollittimeline">
 <table>

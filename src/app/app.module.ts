@@ -9,12 +9,14 @@ import { MetricsMasterService } from './projectinfo/metrics-master.service';
 import { routing } from './app.routing';
 import { NavComponent } from './shared/nav.component';
 import { Statuscomponent } from './weeklyreport/status.component';
+import { RiskComponent } from './riskstatus/risk.component';
+import { RiskService } from './riskstatus/risk.service';
 
 
 @NgModule({
   imports: [BrowserModule, HttpModule, routing, FormsModule],
-  declarations: [AppComponent, InfoComponent, NavComponent, Statuscomponent],
-  providers: [InfoService, MetricsMasterService],
+  declarations: [AppComponent, InfoComponent, NavComponent, Statuscomponent, RiskComponent],
+  providers: [InfoService, MetricsMasterService, RiskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
