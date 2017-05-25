@@ -4,9 +4,8 @@ const gulp = require("gulp");
 const del = require("del");
 const tsc = require("gulp-typescript");
 const sourcemaps = require('gulp-sourcemaps');
-// const tsProject = tsc.createProject("tsconfig.json");
 const tslint = require('gulp-tslint');
-var tsProject = tsc.createProject('tsconfig.json', {
+var tsProject = tsc.createProject('src/tsconfig.json', {
     typescript: require('typescript')
 });
 
@@ -57,6 +56,7 @@ gulp.task("node_modules", () => {
         'core-js/client/shim.min.js',
         'systemjs/dist/system-polyfills.js',
         'systemjs/dist/system.src.js',
+        'systemjs-plugin-text/text.js',
         'reflect-metadata/Reflect.js',
         'rxjs/**',
         'zone.js/dist/**',
@@ -80,6 +80,6 @@ gulp.task('watch', function () {
 /**
  * Build the project.
  */
-gulp.task("build", ['compile', 'resources', 'node_modules'], () => {
+gulp.task("build", ['clean', 'compile', 'resources', 'node_modules'], () => {
     console.log("Building the project ...");
 });
