@@ -4,8 +4,7 @@ import { IHighlightsStatus } from './highlights.status';
 
 @Component({
     selector: 'dash-highlights-status',
-    templateUrl: './highlights.html',
-    styleUrls: ['app/assets/style.css'],
+    templateUrl: './highlights.html'
 })
 
 export class HighlightsComponent implements OnInit {
@@ -24,3 +23,4 @@ export class HighlightsComponent implements OnInit {
         );
     }
 }
+

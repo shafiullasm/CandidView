@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
@@ -11,7 +11,7 @@ import { IMetricsMaster } from './metrics-master';
 @Injectable()
 export class MetricsMasterService {
 
-  private headers = new Headers({ 'Content-Type': 'application/json' });
+  // private headers = new Headers({ 'Content-Type': 'application/json' });
   private apiUrl = 'http://localhost:3090/api/projectinfo/GetMetricsMasterInfo';  // URL to web api
 
   constructor(private http: Http) { }

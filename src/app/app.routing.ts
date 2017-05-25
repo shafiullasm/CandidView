@@ -3,10 +3,9 @@ import { InfoComponent } from './projectinfo/info.component';
 import { Statuscomponent } from './weeklyreport/status.component';
 
 const appRoutes: Routes =
-    [   
-     { path: '', component: InfoComponent },
-     { path: 'report', component: Statuscomponent }
-
+    [
+        { path: '', component: InfoComponent },
+        { path: 'report', component: Statuscomponent }
     ];
 
 

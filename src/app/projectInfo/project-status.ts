@@ -12,19 +12,19 @@ export interface IProjectStatus {
 }
 
 export interface IMetricQuality {
-  defectLeakage?:number;
-  productionDefect?:number;
-  fdnDefects?:number;
-  securityDefects?:number;
+  defectLeakage?: number;
+  productionDefect?: number;
+  fdnDefects?: number;
+  securityDefects?: number;
 }
 export interface IMetricSLA {
-  scheduleAdherence?:number;
-  defectDensityNonProd?:number;
-  sev1DefectLeakageNonProd?:number;
-  defectDensityProd?:number;
-  sev1DefectLeakageProd?:number;
-  sev2DefectLeakageProd?:number;
-  defectRejectionRate?:number;
+  scheduleAdherence?: number;
+  defectDensityNonProd?: number;
+  sev1DefectLeakageNonProd?: number;
+  defectDensityProd?: number;
+  sev1DefectLeakageProd?: number;
+  sev2DefectLeakageProd?: number;
+  defectRejectionRate?: number;
 }
 
 

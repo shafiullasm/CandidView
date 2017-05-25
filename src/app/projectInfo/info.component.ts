@@ -6,8 +6,7 @@ import { IMetricsMaster } from './metrics-master';
 
 @Component({
   selector: 'dash-info',
-  templateUrl: './info.component.html',
-  styleUrls: ['app/assets/style.css'],
+  templateUrl: './info.component.html'
 })
 export class InfoComponent implements OnInit {
   currentDate: string = Date();

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NavComponent } from './shared/nav.component';
 
 @Component({
   selector: 'dash-app',

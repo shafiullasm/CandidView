@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
@@ -11,11 +11,11 @@ import { IProjectStatus } from './project-status';
 @Injectable()
 export class InfoService {
 
-  private headers = new Headers({ 'Content-Type': 'application/json' });
+  // private headers = new Headers({ 'Content-Type': 'application/json' });
   private apiUrl = 'http://localhost:3090/api/projectinfo/GetProjectInfo';  // URL to web api
 
   constructor(private http: Http) { }
-  
+
   getProjectDetails() {
     return this.http.get(this.apiUrl).map(this.success).catch(this.handleError);
   }

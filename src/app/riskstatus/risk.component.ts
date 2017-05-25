@@ -4,10 +4,9 @@ import { IRiskStatus } from './risk.status';
 
 @Component({
     selector: 'dash-risk-status',
-    templateUrl: './risk.component.html',
-    styleUrls: ['app/assets/style.css'],
+    templateUrl: './risk.component.html'
 })
-export class RiskComponent implements OnInit {    
+export class RiskComponent implements OnInit {
     riskStatus: IRiskStatus[];
 
     constructor(public riskService: RiskService) {
