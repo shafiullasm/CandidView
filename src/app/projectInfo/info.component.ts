@@ -5,7 +5,7 @@ import { IProjectStatus } from './project-status';
 import { IMetricsMaster } from './metrics-master';
 
 @Component({
-  selector: 'dash-info',
+  selector: 'candid-info',
   templateUrl: './info.component.html'
 })
 export class InfoComponent implements OnInit {

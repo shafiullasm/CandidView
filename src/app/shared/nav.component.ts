@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 @Component({
-  selector: 'dash-navbar',
+  selector: 'candid-navbar',
   templateUrl: './nav.html'
 })
 export class NavComponent { }

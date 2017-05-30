@@ -3,7 +3,7 @@ import { HighlightsService } from './highlights.service';
 import { IHighlightsStatus } from './highlights.status';
 
 @Component({
-    selector: 'dash-highlights-status',
+    selector: 'candid-highlights-status',
     templateUrl: './highlights.html'
 })
 

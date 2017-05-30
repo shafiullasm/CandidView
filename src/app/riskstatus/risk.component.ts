@@ -3,7 +3,7 @@ import { RiskService } from './risk.service';
 import { IRiskStatus } from './risk.status';
 
 @Component({
-    selector: 'dash-risk-status',
+    selector: 'candid-risk-status',
     templateUrl: './risk.component.html'
 })
 export class RiskComponent implements OnInit {
