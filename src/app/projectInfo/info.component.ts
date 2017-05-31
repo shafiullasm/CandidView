@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InfoService } from './info.service';
 import { MetricsMasterService } from './metrics-master.service';
-import { IProjectStatus } from './project-status';
+import { IProjectStatus, IMetricColors } from './project-status';
 import { IMetricsMaster } from './metrics-master';
 
 @Component({
@@ -12,6 +12,7 @@ export class InfoComponent implements OnInit {
   currentDate: string = Date();
   projectStatus: IProjectStatus[];
   metricsMaster: IMetricsMaster[];
+  metricColor: IMetricColors[];
 
   constructor(public infoService: InfoService, public metricsService: MetricsMasterService) {
   }
@@ -22,10 +23,25 @@ export class InfoComponent implements OnInit {
   }
   getProjectDetails(): void {
     this.infoService.getProjectDetails().subscribe(
-      data => this.projectStatus = data
+      data => {
+        this.projectStatus = data;
+        this.processColors();
+      }
     );
   }
 
+  processColors() {
+    for (let key in this.projectStatus) {
+      //ToDO Below object needs to be built based on the logic. Can use sub methods
+      let objColor: IMetricColors = {
+        scope: "Green",
+        schedule: "Red"
+      };
+      // let temp:IProjectStatus = key;
+      // key.colors = objColor;
+     }
+  }
+  
   getMetricsMatserDetails(): void {
     this.metricsService.getMetricsMasterInfo().subscribe(
       data => this.metricsMaster = data

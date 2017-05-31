@@ -7,8 +7,12 @@ export interface IProjectStatus {
   scope?: number;
   schedule?: number;
   quality?: IMetricQuality;
-  sla?: IMetricSLA;
-  remarks?: string;
+  colors?: IMetricColors;
+}
+
+export interface IMetricColors {
+  scope?: string;
+  schedule?: string;
 }
 
 export interface IMetricQuality {

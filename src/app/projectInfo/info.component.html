@@ -1,8 +1,7 @@
 <table *ngIf="projectStatus && metricsMaster">
   <tr>
     <td class="status-header">
-      <span *ngFor='let status of projectStatus'>             
-                   <span>{{status.businessUnit}}</span>
+      <span>{{projectStatus[0].businessUnit}}
       </span>
     </td>
     <td class="weekcandid-header">
@@ -52,9 +51,6 @@
       #
     </th>
     <th class="grid-header">
-      SchwabBU
-    </th>
-    <th class="grid-header">
       Program
     </th>
     <th class="grid-header">
@@ -62,26 +58,22 @@
     </th>
     <th class="grid-header">
       TeamSize
-    </th>
-    <th *ngFor='let metric of metricsMaster' class="grid-header">
-      {{metric.metricName}}
-    </th>
+    </th>    
     <th class="grid-header">
-      Remarks
+      Scope
+    </th>    
+    <th class="grid-header">
+      Schedule
     </th>
   </thead>
   <tbody>
     <tr *ngFor='let status of projectStatus'>
       <td class="grid-sno">{{status.slno}}</td>
-      <td>{{status.businessUnit}}</td>
       <td>{{status.programName}}</td>
       <td>{{status.owner}}</td>
       <td class="text-align">{{status.teamSize}}</td>
-      <td><input type="text" [(ngModel)]=status.scope></td>
-      <td><input type="text" [(ngModel)]=status.schedule></td>
-      <td><input type="text" ></td>
-      <td><input type="text" ></td>
-      <td>{{status.remarks}}</td>
+      <td>{{status.scope}}</td>
+      <td>{{status.schedule}}</td>
     </tr>
   </tbody>
 </table>
