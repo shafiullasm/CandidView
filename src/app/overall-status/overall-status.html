@@ -6,6 +6,14 @@
   </tr>
   <tr>
     <td>
+      <div class="circle" [ngStyle]="{'background-color':overallStatus.scope}">Y</div>
+      <p class="color-gray">Scope</p>
+    </td>
+    <td>
+      <div class="circle" [ngStyle]="{'background-color':overallStatus.schedule}">Y</div>
+      <p class="color-gray">schedule</p>
+    </td>
+    <td>
       <div class="circle" [ngStyle]="{'background-color':overallStatus.sla}">Y</div>
       <p class="color-gray">SLA</p>
     </td>
