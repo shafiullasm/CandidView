@@ -31,15 +31,14 @@ export class InfoComponent implements OnInit {
   }
 
   processColors() {
-    for (let key in this.projectStatus) {
+    this.projectStatus.forEach(element => {
       //ToDO Below object needs to be built based on the logic. Can use sub methods
       let objColor: IMetricColors = {
         scope: "Green",
         schedule: "Red"
       };
-      // let temp:IProjectStatus = key;
-      // key.colors = objColor;
-     }
+      element.colors = objColor;
+    });
   }
   
   getMetricsMatserDetails(): void {
