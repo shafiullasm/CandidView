@@ -21,7 +21,8 @@ export class InfoComponent implements OnInit {
     this.getMetricsMatserDetails();
     this.getProjectDetails();
   }
-  getProjectDetails(): void {
+
+  getProjectDetails() {
     this.infoService.getProjectDetails().subscribe(
       data => {
         this.projectStatus = data;
@@ -34,17 +35,46 @@ export class InfoComponent implements OnInit {
     this.projectStatus.forEach(element => {
       //ToDO Below object needs to be built based on the logic. Can use sub methods
       let objColor: IMetricColors = {
-        scope: "Green",
-        schedule: "Red"
+        scope: this.colorChangeForScope(element.scope),
+        schedule: this.colorChangeForSchedule(element.schedule)
       };
       element.colors = objColor;
     });
   }
-  
+
   getMetricsMatserDetails(): void {
     this.metricsService.getMetricsMasterInfo().subscribe(
       data => this.metricsMaster = data
     );
+  }
+
+
+  colorChangeForScope(value: number): string {
+    let bgcolor: string;
+    if (value <= 90 && value >= 0) {
+      bgcolor = "Green";
+    }
+    else if (value > 90 && value <= 95) {
+      bgcolor = "Yellow";
+    }
+    else {
+      bgcolor = "Red";
+    }
+    return bgcolor;
+  }
+
+  colorChangeForSchedule(value: number): string {
+    let bgcolor: string;
+    if (value >= 0) {
+      bgcolor = "Green";
+    }
+    else if (value < 0 && value > -1) {
+      bgcolor = "Yellow";
+    }
+    else {
+      bgcolor = "Red";
+    }
+    return bgcolor;
   }
 }
 

@@ -58,10 +58,10 @@
     </th>
     <th class="grid-header">
       TeamSize
-    </th>    
+    </th>
     <th class="grid-header">
       Scope
-    </th>    
+    </th>
     <th class="grid-header">
       Schedule
     </th>
@@ -72,8 +72,10 @@
       <td>{{status.programName}}</td>
       <td>{{status.owner}}</td>
       <td class="text-align">{{status.teamSize}}</td>
-      <td>{{status.scope}}</td>
-      <td>{{status.schedule}}</td>
+      <td [ngStyle]="{'background-color':status.colors.scope}">{{status.scope}}</td>
+      <td [ngStyle]="{'background-color':status.colors.schedule}">{{status.schedule}}</td>
+
+
     </tr>
   </tbody>
 </table>

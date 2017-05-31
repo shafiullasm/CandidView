@@ -28,5 +28,7 @@ export class InfoService {
   success(res: any) {
     return res.json() as IProjectStatus[];
   }
+
+  
 }
 
