@@ -35,20 +35,20 @@ th, td {
     background-color:lightgray;
      color:#686667;
 }
-.weekdash-green{
+.weekcandid-green{
     background-color:green;
 }
-.weekdash-yellow{
+.weekcandid-yellow{
     background-color:yellow;
 }
-.weekdash-red{
+.weekcandid-red{
     background-color:red;
 }
-.weekdash-table{
+.weekcandid-table{
      width:100px;
      margin-left:40px;
 }
-.weekdash-header{
+.weekcandid-header{
     background-color:gray;
 }
 .text-align{
@@ -84,4 +84,11 @@ th, td {
 .scrollittimeline {
     overflow:scroll;
     height:180px;
+}
+
+nav {
+    background: #2D72B6;
+}
+a {
+    color: black;
 }
