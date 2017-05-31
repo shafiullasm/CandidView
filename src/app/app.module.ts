@@ -5,7 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { InfoComponent } from './projectinfo/info.component';
 import { InfoService } from './projectinfo/info.service';
-import { MetricsMasterService } from './projectinfo/metrics-master.service';
+import { OverallStatusComponent } from './overall-status/overall-status.component';
+import { SlaStatusService } from './overall-status/sla-status.service';
 import { routing } from './app.routing';
 import { NavComponent } from './shared/nav.component';
 import { Statuscomponent } from './weeklyreport/status.component';
@@ -17,8 +18,8 @@ import { RiskService } from './riskstatus/risk.service';
 
 @NgModule({
   imports: [BrowserModule, HttpModule, routing, FormsModule],
-  declarations: [AppComponent, InfoComponent, NavComponent, Statuscomponent, RiskComponent, HighlightsComponent],
-  providers: [InfoService, MetricsMasterService, RiskService, HighlightsService],
+  declarations: [AppComponent, InfoComponent, NavComponent, Statuscomponent, RiskComponent, HighlightsComponent, OverallStatusComponent],
+  providers: [InfoService, SlaStatusService, RiskService, HighlightsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

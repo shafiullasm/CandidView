@@ -29,6 +29,6 @@ export class InfoService {
     return res.json() as IProjectStatus[];
   }
 
-  
+
 }
 

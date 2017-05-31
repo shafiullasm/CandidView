@@ -1,4 +1,4 @@
-<table *ngIf="projectStatus && metricsMaster">
+<table *ngIf="projectStatus">
   <tr>
     <td class="status-header">
       <span>{{projectStatus[0].businessUnit}}
@@ -12,19 +12,7 @@
   </tr>
   <tr>
     <td>
-      <table border="0" class="status">
-        <tr>
-          <td colspan="4">
-            <p class="color-blue">Overall Status</p>
-          </td>
-        </tr>
-        <tr>
-          <td *ngFor='let metric of metricsMaster'>
-            <div class="circle">Y</div>
-            <p class="color-gray">{{metric.metricName}}</p>
-          </td>
-        </tr>
-      </table>
+      <candid-overall></candid-overall>
     </td>
     <td>
       <table class="weekcandid-table">

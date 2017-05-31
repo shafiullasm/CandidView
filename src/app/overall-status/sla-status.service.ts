@@ -6,17 +6,15 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Rx';
 
-import { IMetricsMaster } from './metrics-master';
-
 @Injectable()
-export class MetricsMasterService {
+export class SlaStatusService {
 
   // private headers = new Headers({ 'Content-Type': 'application/json' });
-  private apiUrl = 'http://localhost:3090/api/projectinfo/GetMetricsMasterInfo';  // URL to web api
+  private apiUrl = 'http://localhost:3090/api/projectinfo/GetSlaDetail';  // URL to web api
 
   constructor(private http: Http) { }
 
-  getMetricsMasterInfo() {
+  GetSlaDetail() {
     return this.http.get(this.apiUrl).map(this.success).catch(this.handleError);
   }
 
@@ -26,7 +24,7 @@ export class MetricsMasterService {
   }
 
   success(res: any) {
-    return res.json() as IMetricsMaster[];
+    return res.json() as string;
   }
 }
 

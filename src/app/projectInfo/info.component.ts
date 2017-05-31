@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InfoService } from './info.service';
-import { MetricsMasterService } from './metrics-master.service';
 import { IProjectStatus, IMetricColors } from './project-status';
-import { IMetricsMaster } from './metrics-master';
 
 @Component({
   selector: 'candid-info',
@@ -11,14 +9,12 @@ import { IMetricsMaster } from './metrics-master';
 export class InfoComponent implements OnInit {
   currentDate: string = Date();
   projectStatus: IProjectStatus[];
-  metricsMaster: IMetricsMaster[];
   metricColor: IMetricColors[];
 
-  constructor(public infoService: InfoService, public metricsService: MetricsMasterService) {
+  constructor(public infoService: InfoService) {
   }
 
   ngOnInit() {
-    this.getMetricsMatserDetails();
     this.getProjectDetails();
   }
 
@@ -33,7 +29,6 @@ export class InfoComponent implements OnInit {
 
   processColors() {
     this.projectStatus.forEach(element => {
-      //ToDO Below object needs to be built based on the logic. Can use sub methods
       let objColor: IMetricColors = {
         scope: this.colorChangeForScope(element.scope),
         schedule: this.colorChangeForSchedule(element.schedule)
@@ -42,23 +37,14 @@ export class InfoComponent implements OnInit {
     });
   }
 
-  getMetricsMatserDetails(): void {
-    this.metricsService.getMetricsMasterInfo().subscribe(
-      data => this.metricsMaster = data
-    );
-  }
-
-
   colorChangeForScope(value: number): string {
     let bgcolor: string;
     if (value <= 90 && value >= 0) {
-      bgcolor = "Green";
-    }
-    else if (value > 90 && value <= 95) {
-      bgcolor = "Yellow";
-    }
-    else {
-      bgcolor = "Red";
+      bgcolor = 'Green';
+    } else if (value > 90 && value <= 95) {
+      bgcolor = 'Yellow';
+    } else {
+      bgcolor = 'Red';
     }
     return bgcolor;
   }
@@ -66,13 +52,11 @@ export class InfoComponent implements OnInit {
   colorChangeForSchedule(value: number): string {
     let bgcolor: string;
     if (value >= 0) {
-      bgcolor = "Green";
-    }
-    else if (value < 0 && value > -1) {
-      bgcolor = "Yellow";
-    }
-    else {
-      bgcolor = "Red";
+      bgcolor = 'Green';
+    } else if (value < 0 && value > -1) {
+      bgcolor = 'Yellow';
+    } else {
+      bgcolor = 'Red';
     }
     return bgcolor;
   }
