@@ -1,6 +1,6 @@
 export interface IProjectStatus {
   slno?: number;
-  businessUnit?: string;
+  buName?: string;
   programName?: string;
   owner?: string;
   teamSize?: number;

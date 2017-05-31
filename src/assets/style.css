@@ -1,7 +1,7 @@
 table  {
-    border:2px;
+    border:2px !important;
     width: 100%;
-    border:1px solid #939593;
+    border:1px solid #939593 ;    
 }
 th, td {
     text-align: left;
@@ -61,7 +61,6 @@ th, td {
 .color-gray{
     color:#9A989C;
 }
-
 .color-black
 {
     background-color:black;
@@ -72,7 +71,6 @@ th, td {
     background-color: #00B2F1;
     color: white;
 }
-
 .scrollit {
     overflow:scroll;
     height:110px;
@@ -85,10 +83,15 @@ th, td {
     overflow:scroll;
     height:180px;
 }
-
 nav {
     background: #2D72B6;
 }
 a {
     color: black;
+}
+.margin-left {
+    margin-left:10px;
+}
+.table-margin {
+    margin-left:5px;
 }

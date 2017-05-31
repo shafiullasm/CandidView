@@ -1,7 +1,7 @@
 <table *ngIf="projectStatus">
   <tr>
     <td class="status-header">
-      <span>{{projectStatus[0].businessUnit}}
+      <span>{{projectStatus[0].buName}}
       </span>
     </td>
     <td class="weekcandid-header">
@@ -32,8 +32,8 @@
     </td>
   </tr>
 </table>
-
-<table *ngIf="projectStatus">
+<div class="color-blue margin-left">Project-wise Status</div>
+<table *ngIf="projectStatus" class="table-margin">
   <thead>
     <th class="grid-header">
       #
@@ -56,12 +56,12 @@
   </thead>
   <tbody>
     <tr *ngFor='let status of projectStatus'>
-      <td class="grid-sno">{{status.slno}}</td>
-      <td>{{status.programName}}</td>
-      <td>{{status.owner}}</td>
-      <td class="text-align">{{status.teamSize}}</td>
-      <td [ngStyle]="{'background-color':status.colors.scope}">{{status.scope}}</td>
-      <td [ngStyle]="{'background-color':status.colors.schedule}">{{status.schedule}}</td>
+      <td class="grid-sno col-md-0">{{status.slno}}</td>
+      <td class="col-md-2">{{status.programName}}</td>
+      <td class="col-md-2">{{status.owner}}</td>
+      <td class="text-align col-md-0">{{status.teamSize}}</td>
+      <td class="col-md-4" [ngStyle]="{'background-color':status.colors.scope}">{{status.scope}}</td>
+      <td class="col-md-4" [ngStyle]="{'background-color':status.colors.schedule}">{{status.schedule}}</td>
 
 
     </tr>
