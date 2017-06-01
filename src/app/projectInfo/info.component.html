@@ -1,8 +1,7 @@
 <table *ngIf="projectStatus">
   <tr>
     <td class="status-header">
-      <span>{{projectStatus[0].buName}}
-      </span>
+      <span *ngFor="let buName of buName">{{buName}}</span>
     </td>
     <td class="weekcandid-header">
       <h5>Weekly Status

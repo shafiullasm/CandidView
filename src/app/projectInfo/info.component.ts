@@ -10,6 +10,7 @@ export class InfoComponent implements OnInit {
   currentDate: string = Date();
   projectStatus: IProjectStatus[];
   metricColor: IMetricColors[];
+  buName: Array<string> = [];
 
   constructor(public infoService: InfoService) {
   }
@@ -23,6 +24,21 @@ export class InfoComponent implements OnInit {
       data => {
         this.projectStatus = data;
         this.processColors();
+        let i: number = 0;
+        let name: string;
+        this.projectStatus.forEach(element => {
+          if (i == 0) {
+            this.buName[i] = element.buName;
+            name = this.buName[i];
+            i++;
+          }
+          else {
+            if (name != element.buName) {
+              this.buName[i] = element.buName;
+              i++;
+            }
+          }
+        });
       }
     );
   }
