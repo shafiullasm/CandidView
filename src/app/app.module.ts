@@ -14,12 +14,13 @@ import { HighlightsComponent } from './Highlights-Status/highlights.component';
 import { HighlightsService } from './Highlights-Status/highlights.service';
 import { RiskComponent } from './riskstatus/risk.component';
 import { RiskService } from './riskstatus/risk.service';
-import { WeekCandidComponent } from './week-candid/week-candid.component';
+import { LegendComponent } from './legend/legend.component';
 
 
 @NgModule({
   imports: [BrowserModule, HttpModule, routing, FormsModule],
-  declarations: [AppComponent, InfoComponent, NavComponent, Statuscomponent, RiskComponent, HighlightsComponent, OverallStatusComponent, WeekCandidComponent],
+  declarations: [AppComponent, InfoComponent, NavComponent, Statuscomponent, RiskComponent, HighlightsComponent,
+    OverallStatusComponent, LegendComponent],
   providers: [InfoService, SlaStatusService, RiskService, HighlightsService],
   bootstrap: [AppComponent]
 })
