@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { InfoService } from './info.service';
+import { ProjectStatusService } from './project-Status.service';
 import { IProjectStatus, IMetricColors } from './project-status';
 
 @Component({
   selector: 'candid-info',
-  templateUrl: './info.component.html'
+  templateUrl: './project-info.component.html'
 })
-export class InfoComponent implements OnInit {
+export class ProjectStatusComponent implements OnInit {
   currentDate: string = Date();
   projectStatus: IProjectStatus[];
   metricColor: IMetricColors[];
   buName: Array<string> = [];
 
-  constructor(public infoService: InfoService) {
+  constructor(public projectStatusService: ProjectStatusService) {
   }
 
   ngOnInit() {
@@ -20,20 +20,19 @@ export class InfoComponent implements OnInit {
   }
 
   getProjectDetails() {
-    this.infoService.getProjectDetails().subscribe(
+    this.projectStatusService.getProjectDetails().subscribe(
       data => {
         this.projectStatus = data;
         this.processColors();
-        let i: number = 0;
+        let i = 0;
         let name: string;
         this.projectStatus.forEach(element => {
-          if (i == 0) {
+          if (i === 0) {
             this.buName[i] = element.buName;
             name = this.buName[i];
             i++;
-          }
-          else {
-            if (name != element.buName) {
+          } else {
+            if (name !== element.buName) {
               this.buName[i] = element.buName;
               i++;
             }

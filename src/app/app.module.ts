@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { InfoComponent } from './projectinfo/info.component';
-import { InfoService } from './projectinfo/info.service';
+import { ProjectStatusComponent } from './project-status/project-status.component';
+import { ProjectStatusService } from './project-status/project-status.service';
 import { OverallStatusComponent } from './overall-status/overall-status.component';
 import { SlaStatusService } from './overall-status/sla-status.service';
 import { routing } from './app.routing';
@@ -19,9 +19,9 @@ import { LegendComponent } from './legend/legend.component';
 
 @NgModule({
   imports: [BrowserModule, HttpModule, routing, FormsModule],
-  declarations: [AppComponent, InfoComponent, NavComponent, Statuscomponent, RiskComponent, HighlightsComponent,
+  declarations: [AppComponent, ProjectStatusComponent, NavComponent, Statuscomponent, RiskComponent, HighlightsComponent,
     OverallStatusComponent, LegendComponent],
-  providers: [InfoService, SlaStatusService, RiskService, HighlightsService],
+  providers: [ProjectStatusService, SlaStatusService, RiskService, HighlightsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

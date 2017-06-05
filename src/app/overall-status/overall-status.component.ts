@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SlaStatusService } from './sla-status.service';
 import { IOverallStatus } from './overall-status';
-import { IProjectStatus } from '../projectInfo/project-status';
+import { IProjectStatus } from '../project-status/project-status';
 
 @Component({
   selector: 'candid-overall',
