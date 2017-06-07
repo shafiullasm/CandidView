@@ -13,13 +13,14 @@ export interface IProjectStatus {
 export interface IMetricColors {
   scope?: string;
   schedule?: string;
+  quality?: string;
 }
 
 export interface IMetricQuality {
-  defectLeakage?: number;
+  requirementTestCoverage?: number;
+  averageLeadTime?: number;
+  defectLeakageQA?: number;
   productionDefect?: number;
-  fdnDefects?: number;
-  securityDefects?: number;
 }
 export interface IMetricSLA {
   scheduleAdherence?: number;

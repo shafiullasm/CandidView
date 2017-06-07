@@ -46,7 +46,10 @@ export class ProjectStatusComponent implements OnInit {
     this.projectStatus.forEach(element => {
       let objColor: IMetricColors = {
         scope: this.colorChangeForScope(element.scope),
-        schedule: this.colorChangeForSchedule(element.schedule)
+        schedule: this.colorChangeForSchedule(element.schedule),
+        quality: this.colorChangeForQuality(element.quality.requirementTestCoverage,
+          element.quality.averageLeadTime, element.quality.defectLeakageQA, element.quality.productionDefect)
+
       };
       element.colors = objColor;
     });
@@ -75,6 +78,59 @@ export class ProjectStatusComponent implements OnInit {
     }
     return bgcolor;
   }
+
+  colorChangeForQuality(requirementTestCoverage: number, averageLeadTime: number,
+    defectLeakageQA: number, productionDefect: number): string {
+    let bgColor: string;
+    let Colors: Array<string> = [];
+
+    if (requirementTestCoverage >= 0) {
+      Colors[0] = 'Green';
+    } else if (requirementTestCoverage > 0 && requirementTestCoverage >= -0.1) {
+      Colors[0] = 'Yellow';
+    } else {
+      Colors[0] = 'Red';
+    }
+
+    if (averageLeadTime <= 0.2) {
+      Colors[1] = 'Green';
+    } else if (averageLeadTime > 0.2 && averageLeadTime < 0.5) {
+      Colors[1] = 'Yellow';
+    } else {
+      Colors[1] = 'Red';
+    }
+
+    if (defectLeakageQA <= 0.2) {
+      Colors[1] = 'Green';
+    } else if (defectLeakageQA > 0.2 && defectLeakageQA < 0.5) {
+      Colors[1] = 'Yellow';
+    } else {
+      Colors[1] = 'Red';
+    }
+
+    if (productionDefect <= 0.2) {
+      Colors[2] = 'Green';
+    } else {
+      Colors[2] = 'Red';
+    }
+
+    for (let i = 0; Colors[i] != null; i++) {
+      if (Colors[i] === 'Red') {
+        bgColor = 'Red';
+        break;
+      }
+    }
+    if (bgColor == null) {
+      for (let i = 0; Colors[i] != null; i++) {
+        if (Colors[i] === 'Yellow') {
+          bgColor = 'Yellow';
+          break;
+        }
+      }
+    }
+    if (bgColor == null) {
+      bgColor = 'Green';
+    }
+    return bgColor;
+  }
 }
-
-

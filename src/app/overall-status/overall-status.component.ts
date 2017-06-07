@@ -51,6 +51,14 @@ export class OverallStatusComponent implements OnInit {
       this.overallStatus.schedule = 'Yellow';
     }
   }
+  calculateColorforQuality(element: IProjectStatus) {
+    if (element.colors.quality.toUpperCase() === 'RED') {
+      this.overallStatus.quality = 'Red';
+    }
+    if (element.colors.quality.toUpperCase() === 'YELLOW') {
+      this.overallStatus.quality = 'Yellow';
+    }
+  }
 }
 
 
