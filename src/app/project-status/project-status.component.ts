@@ -128,20 +128,16 @@ export class ProjectStatusComponent implements OnInit {
   }
   overAllColor(Colors: Array<string>): string {
     let bgColor: string;
-    for (let i = 0; Colors[i] != null; i++) {
-      if (Colors[i] === 'Red') {
+    Colors.forEach(value => {
+      if (value === 'Red') {
         bgColor = 'Red';
-        break;
       }
-    }
-    if (bgColor == null) {
-      for (let i = 0; Colors[i] != null; i++) {
-        if (Colors[i] === 'Yellow') {
-          bgColor = 'Yellow';
-          break;
-        }
+    });
+    Colors.forEach(value => {
+      if (value === 'Yellow') {
+        bgColor = 'Yellow';
       }
-    }
+    });
     if (bgColor == null) {
       bgColor = 'Green';
     }
@@ -210,11 +206,11 @@ export class ProjectStatusComponent implements OnInit {
       Colors[0] = 'Red';
     }
     if (availabilityofResource === 'Yes') {
-      Colors[0] = 'Green';
+      Colors[1] = 'Green';
     } else if (availabilityofResource === 'Partial') {
-      Colors[0] = 'Yellow';
+      Colors[1] = 'Yellow';
     } else {
-      Colors[0] = 'Red';
+      Colors[1] = 'Red';
     }
     bgColor = this.overAllColor(Colors);
     return bgColor;
