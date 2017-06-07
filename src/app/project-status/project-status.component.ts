@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectStatusService } from './project-Status.service';
+import { ProjectStatusService } from './project-status.service';
 import { IProjectStatus, IMetricColors } from './project-status';
 
 @Component({
-  selector: 'candid-info',
-  templateUrl: './project-info.component.html'
+  selector: 'candid-status',
+  templateUrl: './project-status.component.html'
 })
 export class ProjectStatusComponent implements OnInit {
   currentDate: string = Date();
