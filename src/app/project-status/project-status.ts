@@ -11,7 +11,6 @@ export interface IProjectStatus {
   qualityEngineeringPractice?: IMetricQualityEngineeringPractice;
   resource?: IResource;
 }
-
 export interface IMetricColors {
   scope?: string;
   schedule?: string;
@@ -19,14 +18,12 @@ export interface IMetricColors {
   qualityEngineeringPractice?: string;
   resource?: string;
 }
-
 export interface IMetricQuality {
   requirementTestCoverage?: number;
   averageLeadTime?: number;
   defectLeakageQA?: number;
   productionDefect?: number;
 }
-
 export interface IMetricQualityEngineeringPractice {
   tddCoverage?: number;
   bddCoverage?: number;
@@ -36,7 +33,6 @@ export interface IMetricQualityEngineeringPractice {
   maintainabilityIndex?: number;
   cyclomaticComplexity?: number;
 }
-
 export interface CodeReviewDev {
   catastrophic?: number;
   majorDefectsWithoutWorkaround?: number;
@@ -52,7 +48,6 @@ export interface CodeReviewQA {
 export interface IResource {
   attrition?: number;
   availabilityofResource?: string;
-
 }
 export interface IMetricSLA {
   scheduleAdherence?: number;
@@ -62,6 +57,11 @@ export interface IMetricSLA {
   sev1DefectLeakageProd?: number;
   sev2DefectLeakageProd?: number;
   defectRejectionRate?: number;
+}
+export enum IEnumColors {
+    Green,
+    Yellow,
+    Red
 }
 
 

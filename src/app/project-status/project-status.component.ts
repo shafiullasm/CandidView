@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectStatusService } from './project-status.service';
-import { IProjectStatus, IMetricColors, IMetricQuality, IMetricQualityEngineeringPractice } from './project-status';
+import { IProjectStatus, IMetricColors, IMetricQuality, IMetricQualityEngineeringPractice, IEnumColors } from './project-status';
 
 @Component({
   selector: 'candid-status',
@@ -12,14 +12,7 @@ export class ProjectStatusComponent implements OnInit {
   metricColor: IMetricColors[];
   buName: Array<string> = [];
 
-  constructor(public projectStatusService: ProjectStatusService) {
-    enum Colors {
-      Green = 0,
-      Yellow = 1,
-      Red = 2
-    }
-  }
-
+  constructor(public projectStatusService: ProjectStatusService) { }
   ngOnInit() {
     this.getProjectDetails();
   }
@@ -64,22 +57,22 @@ export class ProjectStatusComponent implements OnInit {
   colorChangeForScope(value: number): string {
     let bgcolor: string;
     if (value <= 90 && value >= 0) {
-      bgcolor = 'Green';
+      bgcolor = IEnumColors[0];
     } else if (value >= 90 && value <= 95) {
-      bgcolor = 'Yellow';
+      bgcolor = IEnumColors[1];
     } else {
-      bgcolor = 'Red';
+      bgcolor = IEnumColors[2];
     }
     return bgcolor;
   }
   colorChangeForSchedule(value: number): string {
     let bgcolor: string;
     if (value >= 0) {
-      bgcolor = 'Green';
+      bgcolor = IEnumColors[0];
     } else if (value < 0 && value > -1) {
-      bgcolor = 'Yellow';
+      bgcolor = IEnumColors[1];
     } else {
-      bgcolor = 'Red';
+      bgcolor = IEnumColors[2];
     }
     return bgcolor;
   }
@@ -87,30 +80,30 @@ export class ProjectStatusComponent implements OnInit {
     let bgColor: string;
     let Colors: Array<string> = [];
     if (qualityValues.requirementTestCoverage >= 0) {
-      Colors[0] = 'Green';
+      Colors[0] = IEnumColors[0];
     } else if (qualityValues.requirementTestCoverage < 0 && qualityValues.requirementTestCoverage >= -0.1) {
-      Colors[0] = 'Yellow';
+      Colors[0] = IEnumColors[1];
     } else {
-      Colors[0] = 'Red';
+      Colors[0] = IEnumColors[2];
     }
     if (qualityValues.averageLeadTime <= 0.2) {
-      Colors[1] = 'Green';
+      Colors[1] = IEnumColors[0];
     } else if (qualityValues.averageLeadTime > 0.2 && qualityValues.averageLeadTime < 0.5) {
-      Colors[1] = 'Yellow';
+      Colors[1] = IEnumColors[1];
     } else {
-      Colors[1] = 'Red';
+      Colors[1] = IEnumColors[2];
     }
     if (qualityValues.defectLeakageQA <= 0.2) {
-      Colors[2] = 'Green';
+      Colors[2] = IEnumColors[0];
     } else if (qualityValues.defectLeakageQA > 0.2 && qualityValues.defectLeakageQA < 0.5) {
-      Colors[2] = 'Yellow';
+      Colors[2] = IEnumColors[1];
     } else {
-      Colors[2] = 'Red';
+      Colors[2] = IEnumColors[2];
     }
     if (qualityValues.productionDefect <= 0.2) {
-      Colors[3] = 'Green';
+      Colors[3] = IEnumColors[0];
     } else {
-      Colors[3] = 'Red';
+      Colors[3] = IEnumColors[2];
     }
     bgColor = this.overAllColor(Colors);
     return bgColor;
@@ -118,17 +111,17 @@ export class ProjectStatusComponent implements OnInit {
   overAllColor(Colors: Array<string>): string {
     let bgColor: string;
     Colors.forEach(value => {
-      if (value === 'Red') {
-        bgColor = 'Red';
+      if (value === IEnumColors[2]) {
+        bgColor = IEnumColors[2];
       }
     });
     Colors.forEach(value => {
-      if (value === 'Yellow') {
-        bgColor = 'Yellow';
+      if (value === IEnumColors[1]) {
+        bgColor = IEnumColors[1];
       }
     });
     if (bgColor == null) {
-      bgColor = 'Green';
+      bgColor = IEnumColors[0];
     }
     return bgColor;
   }
@@ -136,61 +129,61 @@ export class ProjectStatusComponent implements OnInit {
     let bgColor: string;
     let Colors: Array<string> = [];
     if (qualityEngineering.tddCoverage >= 95) {
-      Colors[0] = 'Green';
+      Colors[0] = IEnumColors[0];
     } else if (qualityEngineering.tddCoverage > 80 && qualityEngineering.tddCoverage <= 95) {
-      Colors[0] = 'Yellow';
+      Colors[0] = IEnumColors[1];
     } else {
-      Colors[0] = 'Red';
+      Colors[0] = IEnumColors[2];
     }
     if (qualityEngineering.bddCoverage >= 80) {
-      Colors[1] = 'Green';
+      Colors[1] = IEnumColors[0];
     } else if (qualityEngineering.bddCoverage > 80 && qualityEngineering.bddCoverage <= 65) {
-      Colors[1] = 'Yellow';
+      Colors[1] = IEnumColors[1];
     } else {
-      Colors[1] = 'Red';
+      Colors[1] = IEnumColors[2];
     }
     if (qualityEngineering.mvpAdoption >= 2) {
-      Colors[2] = 'Green';
+      Colors[2] = IEnumColors[0];
     } else if (qualityEngineering.mvpAdoption = 1) {
-      Colors[2] = 'Yellow';
+      Colors[2] = IEnumColors[1];
     } else {
-      Colors[2] = 'Red';
+      Colors[2] = IEnumColors[2];
     }
     if (qualityEngineering.codeReviewDev.catastrophic === 0 &&
       qualityEngineering.codeReviewDev.majorDefectsWithoutWorkaround === 0 &&
       qualityEngineering.codeReviewDev.majorDefectsWithWorkaround === 0 &&
       qualityEngineering.codeReviewDev.minorDefects === 0) {
-      Colors[3] = 'Green';
+      Colors[3] = IEnumColors[0];
     } else if (qualityEngineering.codeReviewDev.catastrophic === 0 &&
       qualityEngineering.codeReviewDev.majorDefectsWithoutWorkaround === 0 &&
       qualityEngineering.codeReviewDev.majorDefectsWithWorkaround < 0 &&
       qualityEngineering.codeReviewDev.majorDefectsWithWorkaround < 5) {
-      Colors[3] = 'Yellow';
+      Colors[3] = IEnumColors[1];
     } else {
-      Colors[3] = 'Red';
+      Colors[3] = IEnumColors[2];
     }
     if (qualityEngineering.codeReviewQA.catastrophic === 0 &&
       qualityEngineering.codeReviewQA.majorDefectsWithoutWorkaround === 0 &&
       qualityEngineering.codeReviewQA.majorDefectsWithWorkaround === 0 &&
       qualityEngineering.codeReviewQA.minorDefects === 0) {
-      Colors[4] = 'Green';
+      Colors[4] = IEnumColors[0];
     } else if (qualityEngineering.codeReviewQA.catastrophic === 0 &&
       qualityEngineering.codeReviewQA.majorDefectsWithoutWorkaround === 0 &&
       qualityEngineering.codeReviewQA.majorDefectsWithWorkaround < 0 &&
       qualityEngineering.codeReviewQA.majorDefectsWithWorkaround < 5) {
-      Colors[4] = 'Yellow';
+      Colors[4] = IEnumColors[1];
     } else {
-      Colors[4] = 'Red';
+      Colors[4] = IEnumColors[2];
     }
     if (qualityEngineering.maintainabilityIndex >= 60) {
-      Colors[5] = 'Green';
+      Colors[5] = IEnumColors[0];
     } else {
-      Colors[5] = 'Red';
+      Colors[5] = IEnumColors[2];
     }
     if (qualityEngineering.cyclomaticComplexity <= 15) {
-      Colors[6] = 'Green';
+      Colors[6] = IEnumColors[0];
     } else {
-      Colors[6] = 'Red';
+      Colors[6] = IEnumColors[2];
     }
     bgColor = this.overAllColor(Colors);
     return bgColor;
@@ -199,18 +192,18 @@ export class ProjectStatusComponent implements OnInit {
     let bgColor: string;
     let Colors: Array<string> = [];
     if (attrition === 0) {
-      Colors[0] = 'Green';
+      Colors[0] = IEnumColors[0];
     } else if (attrition < 0 && attrition >= 1) {
-      Colors[0] = 'Yellow';
+      Colors[0] = IEnumColors[1];
     } else {
-      Colors[0] = 'Red';
+      Colors[0] = IEnumColors[2];
     }
     if (availabilityofResource === 'Yes') {
-      Colors[1] = 'Green';
+      Colors[1] = IEnumColors[0];
     } else if (availabilityofResource === 'Partial') {
-      Colors[1] = 'Yellow';
+      Colors[1] = IEnumColors[1];
     } else {
-      Colors[1] = 'Red';
+      Colors[1] = IEnumColors[2];
     }
     bgColor = this.overAllColor(Colors);
     return bgColor;
