@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectStatusService } from './project-status.service';
-import { IProjectStatus, IMetricColors } from './project-status';
+import { IProjectStatus, IMetricColors, IMetricQuality, IMetricQualityEngineeringPractice } from './project-status';
 
 @Component({
   selector: 'candid-status',
@@ -13,6 +13,11 @@ export class ProjectStatusComponent implements OnInit {
   buName: Array<string> = [];
 
   constructor(public projectStatusService: ProjectStatusService) {
+    enum Colors {
+      Green = 0,
+      Yellow = 1,
+      Red = 2
+    }
   }
 
   ngOnInit() {
@@ -44,23 +49,8 @@ export class ProjectStatusComponent implements OnInit {
 
   processColors() {
     this.projectStatus.forEach(element => {
-      let qualityValues: Array<number> = [element.quality.requirementTestCoverage, element.quality.averageLeadTime,
-      element.quality.defectLeakageQA, element.quality.productionDefect];
-
-      let qualityEngineering: Array<number> = [element.qualityEngineeringPractice.tddCoverage,
-      element.qualityEngineeringPractice.bddCoverage,
-      element.qualityEngineeringPractice.mvpAdoption,
-      element.qualityEngineeringPractice.codeReviewDev.catastrophic,
-      element.qualityEngineeringPractice.codeReviewDev.majorDefectsWithoutWorkaround,
-      element.qualityEngineeringPractice.codeReviewDev.majorDefectsWithWorkaround,
-      element.qualityEngineeringPractice.codeReviewDev.minorDefects,
-      element.qualityEngineeringPractice.codeReviewQA.catastrophic,
-      element.qualityEngineeringPractice.codeReviewQA.majorDefectsWithoutWorkaround,
-      element.qualityEngineeringPractice.codeReviewQA.majorDefectsWithWorkaround,
-      element.qualityEngineeringPractice.codeReviewQA.minorDefects,
-      element.qualityEngineeringPractice.maintainabilityIndex,
-      element.qualityEngineeringPractice.cyclomaticComplexity];
-
+      let qualityValues: IMetricQuality = element.quality;
+      let qualityEngineering: IMetricQualityEngineeringPractice = element.qualityEngineeringPractice;
       let objColor: IMetricColors = {
         scope: this.colorChangeForScope(element.scope),
         schedule: this.colorChangeForSchedule(element.schedule),
@@ -71,7 +61,6 @@ export class ProjectStatusComponent implements OnInit {
       element.colors = objColor;
     });
   }
-
   colorChangeForScope(value: number): string {
     let bgcolor: string;
     if (value <= 90 && value >= 0) {
@@ -94,31 +83,31 @@ export class ProjectStatusComponent implements OnInit {
     }
     return bgcolor;
   }
-  colorChangeForQuality(qualityValues: Array<number>): string {
+  colorChangeForQuality(qualityValues: IMetricQuality): string {
     let bgColor: string;
     let Colors: Array<string> = [];
-    if (qualityValues[0] >= 0) {
+    if (qualityValues.requirementTestCoverage >= 0) {
       Colors[0] = 'Green';
-    } else if (qualityValues[0] < 0 && qualityValues[0] >= -0.1) {
+    } else if (qualityValues.requirementTestCoverage < 0 && qualityValues.requirementTestCoverage >= -0.1) {
       Colors[0] = 'Yellow';
     } else {
       Colors[0] = 'Red';
     }
-    if (qualityValues[1] <= 0.2) {
+    if (qualityValues.averageLeadTime <= 0.2) {
       Colors[1] = 'Green';
-    } else if (qualityValues[1] > 0.2 && qualityValues[1] < 0.5) {
+    } else if (qualityValues.averageLeadTime > 0.2 && qualityValues.averageLeadTime < 0.5) {
       Colors[1] = 'Yellow';
     } else {
       Colors[1] = 'Red';
     }
-    if (qualityValues[2] <= 0.2) {
+    if (qualityValues.defectLeakageQA <= 0.2) {
       Colors[2] = 'Green';
-    } else if (qualityValues[2] > 0.2 && qualityValues[2] < 0.5) {
+    } else if (qualityValues.defectLeakageQA > 0.2 && qualityValues.defectLeakageQA < 0.5) {
       Colors[2] = 'Yellow';
     } else {
       Colors[2] = 'Red';
     }
-    if (qualityValues[3] <= 0.2) {
+    if (qualityValues.productionDefect <= 0.2) {
       Colors[3] = 'Green';
     } else {
       Colors[3] = 'Red';
@@ -143,51 +132,62 @@ export class ProjectStatusComponent implements OnInit {
     }
     return bgColor;
   }
-  colorChangeForQualityEngineeringPractice(qualityEngineering: Array<number>): string {
+  colorChangeForQualityEngineeringPractice(qualityEngineering: IMetricQualityEngineeringPractice): string {
     let bgColor: string;
     let Colors: Array<string> = [];
-
-    if (qualityEngineering[0] >= 95) {
+    if (qualityEngineering.tddCoverage >= 95) {
       Colors[0] = 'Green';
-    } else if (qualityEngineering[0] > 80 && qualityEngineering[0] <= 95) {
+    } else if (qualityEngineering.tddCoverage > 80 && qualityEngineering.tddCoverage <= 95) {
       Colors[0] = 'Yellow';
     } else {
       Colors[0] = 'Red';
     }
-    if (qualityEngineering[1] >= 80) {
+    if (qualityEngineering.bddCoverage >= 80) {
       Colors[1] = 'Green';
-    } else if (qualityEngineering[1] > 80 && qualityEngineering[1] <= 65) {
+    } else if (qualityEngineering.bddCoverage > 80 && qualityEngineering.bddCoverage <= 65) {
       Colors[1] = 'Yellow';
     } else {
       Colors[1] = 'Red';
     }
-    if (qualityEngineering[2] >= 2) {
+    if (qualityEngineering.mvpAdoption >= 2) {
       Colors[2] = 'Green';
-    } else if (qualityEngineering[2] = 1) {
+    } else if (qualityEngineering.mvpAdoption = 1) {
       Colors[2] = 'Yellow';
     } else {
       Colors[2] = 'Red';
     }
-    if (qualityEngineering[3] && qualityEngineering[4] && qualityEngineering[5] && qualityEngineering[6] === 0) {
+    if (qualityEngineering.codeReviewDev.catastrophic === 0 &&
+      qualityEngineering.codeReviewDev.majorDefectsWithoutWorkaround === 0 &&
+      qualityEngineering.codeReviewDev.majorDefectsWithWorkaround === 0 &&
+      qualityEngineering.codeReviewDev.minorDefects === 0) {
       Colors[3] = 'Green';
-    } else if (qualityEngineering[3] && qualityEngineering[4] === 0 && qualityEngineering[5] < 0 && qualityEngineering[5] < 5) {
+    } else if (qualityEngineering.codeReviewDev.catastrophic === 0 &&
+      qualityEngineering.codeReviewDev.majorDefectsWithoutWorkaround === 0 &&
+      qualityEngineering.codeReviewDev.majorDefectsWithWorkaround < 0 &&
+      qualityEngineering.codeReviewDev.majorDefectsWithWorkaround < 5) {
       Colors[3] = 'Yellow';
     } else {
       Colors[3] = 'Red';
     }
-    if (qualityEngineering[7] && qualityEngineering[8] && qualityEngineering[9] && qualityEngineering[10] === 0) {
+    if (qualityEngineering.codeReviewQA.catastrophic === 0 &&
+      qualityEngineering.codeReviewQA.majorDefectsWithoutWorkaround === 0 &&
+      qualityEngineering.codeReviewQA.majorDefectsWithWorkaround === 0 &&
+      qualityEngineering.codeReviewQA.minorDefects === 0) {
       Colors[4] = 'Green';
-    } else if (qualityEngineering[7] && qualityEngineering[8] === 0 && qualityEngineering[9] < 0 && qualityEngineering[9] < 5) {
+    } else if (qualityEngineering.codeReviewQA.catastrophic === 0 &&
+      qualityEngineering.codeReviewQA.majorDefectsWithoutWorkaround === 0 &&
+      qualityEngineering.codeReviewQA.majorDefectsWithWorkaround < 0 &&
+      qualityEngineering.codeReviewQA.majorDefectsWithWorkaround < 5) {
       Colors[4] = 'Yellow';
     } else {
       Colors[4] = 'Red';
     }
-    if (qualityEngineering[11] >= 60) {
+    if (qualityEngineering.maintainabilityIndex >= 60) {
       Colors[5] = 'Green';
     } else {
       Colors[5] = 'Red';
     }
-    if (qualityEngineering[12] <= 15) {
+    if (qualityEngineering.cyclomaticComplexity <= 15) {
       Colors[6] = 'Green';
     } else {
       Colors[6] = 'Red';
