@@ -59,9 +59,9 @@ export interface IMetricSLA {
   defectRejectionRate?: number;
 }
 export enum IEnumColors {
-    Green,
-    Yellow,
-    Red
+    Green = <any>'Green',
+    Yellow = <any>'Yellow',
+    Red = <any>'Red'
 }
 
 
