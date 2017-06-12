@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, BaseRequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
@@ -15,7 +15,13 @@ export class SlaStatusService {
   constructor(private http: Http) { }
 
   GetSlaDetail() {
-    return this.http.get(this.apiUrl).map(this.success).catch(this.handleError);
+    let baseRequestOptions = new BaseRequestOptions();
+    let options = baseRequestOptions.merge({
+      url: this.apiUrl,
+      withCredentials: true
+    });
+
+    return this.http.get(this.apiUrl, options).map(this.success).catch(this.handleError);
   }
 
   handleError(error: any) {
