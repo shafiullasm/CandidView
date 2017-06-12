@@ -4,6 +4,7 @@ export interface IOverallStatus {
   quality?: string;
   qualityengineeringpractice?: string;
   sla?: string;
+  resource?: string;
 }
 
 

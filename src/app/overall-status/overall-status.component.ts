@@ -9,15 +9,14 @@ import { IProjectStatus } from '../project-status/project-status';
 export class OverallStatusComponent implements OnInit {
   overallStatus: IOverallStatus = {};
   @Input('projectStatus') projectStatus: IProjectStatus[];
+  qualityColors: Array<string> = [];
 
   constructor(public slaService: SlaStatusService) {
   }
-
   ngOnInit() {
     this.GetSlaDetail();
     this.GetAllMetricDetails();
   }
-
   GetSlaDetail(): void {
     this.slaService.GetSlaDetail().subscribe(
       data => {
@@ -25,47 +24,27 @@ export class OverallStatusComponent implements OnInit {
       }
     );
   }
-
   GetAllMetricDetails() {
     this.projectStatus.forEach(element => {
-      this.calculateColorforScope(element);
-      this.calculateColorforSchedule(element);
+      this.calculateColorforOverAllStatus();
     });
   }
 
-  calculateColorforScope(element: IProjectStatus) {
-    if (element.colors.scope.toUpperCase() === 'RED') {
-      this.overallStatus.scope = 'Red';
-    }
-    if (element.colors.scope.toUpperCase() === 'YELLOW') {
-      this.overallStatus.scope = 'Yellow';
-    }
-  }
-
-  calculateColorforSchedule(element: IProjectStatus) {
-    if (element.colors.schedule.toUpperCase() === 'RED') {
-      this.overallStatus.schedule = 'Red';
-    }
-    if (element.colors.schedule.toUpperCase() === 'YELLOW') {
-      this.overallStatus.schedule = 'Yellow';
-    }
-  }
-  calculateColorforQuality(element: IProjectStatus) {
-    if (element.colors.quality.toUpperCase() === 'RED') {
-      this.overallStatus.quality = 'Red';
-    }
-    if (element.colors.quality.toUpperCase() === 'YELLOW') {
-      this.overallStatus.quality = 'Yellow';
-    }
-  }
-  calculateColorforQualityEngineeringPractice(element: IProjectStatus) {
-    if (element.colors.qualityEngineeringPractice.toUpperCase() === 'RED') {
-      this.overallStatus.qualityengineeringpractice = 'Red';
-    }
-    if (element.colors.qualityEngineeringPractice.toUpperCase() === 'YELLOW') {
-      this.overallStatus.qualityengineeringpractice = 'Yellow';
-    }
+  calculateColorforOverAllStatus() {
+    let colorScope = this.projectStatus.filter(element => element.colors.scope).length > 0 ? 'Red' :
+      this.projectStatus.filter(element => element.colors.scope).length > 0 ? 'Yellow' : 'Green';
+    this.overallStatus.scope = colorScope;
+    let colorSchedule = this.projectStatus.filter(element => element.colors.schedule).length > 0 ? 'Red' :
+      this.projectStatus.filter(element => element.colors.schedule).length > 0 ? 'Yellow' : 'Green';
+    this.overallStatus.schedule = colorSchedule;
+    let colorQuality = this.projectStatus.filter(element => element.colors.quality).length > 0 ? 'Red' :
+      this.projectStatus.filter(element => element.colors.quality).length > 0 ? 'Yellow' : 'Green';
+    this.overallStatus.quality = colorQuality;
+    let colorQualityEng = this.projectStatus.filter(element => element.colors.qualityEngineeringPractice).length > 0 ? 'Red' :
+      this.projectStatus.filter(element => element.colors.qualityEngineeringPractice).length > 0 ? 'Yellow' : 'Green';
+    this.overallStatus.qualityengineeringpractice = colorQualityEng;
+    let colorResource = this.projectStatus.filter(element => element.colors.resource).length > 0 ? 'Red' :
+      this.projectStatus.filter(element => element.colors.resource).length > 0 ? 'Yellow' : 'Green';
+    this.overallStatus.resource = colorResource;
   }
 }
-
-
