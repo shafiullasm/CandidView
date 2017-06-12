@@ -31,20 +31,20 @@ export class OverallStatusComponent implements OnInit {
   }
 
   calculateColorforOverAllStatus() {
-    let colorScope = this.projectStatus.filter(element => element.colors.scope).length > 0 ? 'Red' :
-      this.projectStatus.filter(element => element.colors.scope).length > 0 ? 'Yellow' : 'Green';
+    let colorScope = this.projectStatus.filter(element => element.colors.scope === 'Red').length > 0 ? 'Red' :
+      this.projectStatus.filter(element => element.colors.scope === 'Yellow').length > 0 ? 'Yellow' : 'Green';
     this.overallStatus.scope = colorScope;
-    let colorSchedule = this.projectStatus.filter(element => element.colors.schedule).length > 0 ? 'Red' :
-      this.projectStatus.filter(element => element.colors.schedule).length > 0 ? 'Yellow' : 'Green';
+    let colorSchedule = this.projectStatus.filter(element => element.colors.schedule === 'Red').length > 0 ? 'Red' :
+      this.projectStatus.filter(element => element.colors.schedule === 'Yellow').length > 0 ? 'Yellow' : 'Green';
     this.overallStatus.schedule = colorSchedule;
-    let colorQuality = this.projectStatus.filter(element => element.colors.quality).length > 0 ? 'Red' :
-      this.projectStatus.filter(element => element.colors.quality).length > 0 ? 'Yellow' : 'Green';
+    let colorQuality = this.projectStatus.filter(element => element.colors.quality === 'Red').length > 0 ? 'Red' :
+      this.projectStatus.filter(element => element.colors.quality === 'Yellow').length > 0 ? 'Yellow' : 'Green';
     this.overallStatus.quality = colorQuality;
-    let colorQualityEng = this.projectStatus.filter(element => element.colors.qualityEngineeringPractice).length > 0 ? 'Red' :
-      this.projectStatus.filter(element => element.colors.qualityEngineeringPractice).length > 0 ? 'Yellow' : 'Green';
+    let colorQualityEng = this.projectStatus.filter(element => element.colors.qualityEngineeringPractice === 'Red').length > 0 ? 'Red' :
+      this.projectStatus.filter(element => element.colors.qualityEngineeringPractice === 'Yellow').length > 0 ? 'Yellow' : 'Green';
     this.overallStatus.qualityengineeringpractice = colorQualityEng;
-    let colorResource = this.projectStatus.filter(element => element.colors.resource).length > 0 ? 'Red' :
-      this.projectStatus.filter(element => element.colors.resource).length > 0 ? 'Yellow' : 'Green';
+    let colorResource = this.projectStatus.filter(element => element.colors.resource === 'Red').length > 0 ? 'Red' :
+      this.projectStatus.filter(element => element.colors.resource === 'Yellow').length > 0 ? 'Yellow' : 'Green';
     this.overallStatus.resource = colorResource;
   }
 }
