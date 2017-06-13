@@ -11,11 +11,11 @@ export class ProjectStatusComponent implements OnInit {
   projectStatus: IProjectStatus[];
   metricColor: IMetricColors[];
   buName: Array<string> = [];
+  isServiceError: boolean;
   constructor(public projectStatusService: ProjectStatusService) { }
   ngOnInit() {
     this.getProjectDetails();
   }
-
   getProjectDetails() {
     this.projectStatusService.getProjectDetails().subscribe(
       data => {
@@ -35,10 +35,12 @@ export class ProjectStatusComponent implements OnInit {
             }
           }
         });
+      },
+      Error => {
+        this.isServiceError = Error;
       }
     );
   }
-
   processColors() {
     this.projectStatus.forEach(element => {
       let qualityValues: IMetricQuality = element.quality;

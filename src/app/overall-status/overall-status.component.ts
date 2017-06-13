@@ -10,7 +10,7 @@ export class OverallStatusComponent implements OnInit {
   overallStatus: IOverallStatus = {};
   @Input('projectStatus') projectStatus: IProjectStatus[];
   qualityColors: Array<string> = [];
-
+  isServiceError:string;
   constructor(public slaService: SlaStatusService) {
   }
   ngOnInit() {
@@ -21,6 +21,9 @@ export class OverallStatusComponent implements OnInit {
     this.slaService.GetSlaDetail().subscribe(
       data => {
         this.overallStatus.sla = data;
+      },
+      Error => {
+        this.isServiceError = Error;
       }
     );
   }

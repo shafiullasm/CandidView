@@ -15,12 +15,13 @@ import { HighlightsService } from './Highlights-Status/highlights.service';
 import { RiskComponent } from './riskstatus/risk.component';
 import { RiskService } from './riskstatus/risk.service';
 import { LegendComponent } from './legend/legend.component';
+import { ErrorComponent } from './error/error.component';
 
 
 @NgModule({
   imports: [BrowserModule, HttpModule, routing, FormsModule],
   declarations: [AppComponent, ProjectStatusComponent, NavComponent, Statuscomponent, RiskComponent, HighlightsComponent,
-    OverallStatusComponent, LegendComponent],
+    OverallStatusComponent, LegendComponent, ErrorComponent],
   providers: [ProjectStatusService, SlaStatusService, RiskService, HighlightsService],
   bootstrap: [AppComponent]
 })

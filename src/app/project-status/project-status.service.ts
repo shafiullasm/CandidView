@@ -26,7 +26,8 @@ export class ProjectStatusService {
   }
 
   handleError(error: any) {
-    console.error('An error occurred', error); // for demo purposes only
+    //console.error('An error occurred', error); // for demo purposes only
+    error = "oops something went wrong please contact your administrator";
     return Observable.throw(error.message || error);
   }
 

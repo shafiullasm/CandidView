@@ -1,3 +1,4 @@
+<candid-error [isServiceError]="isServiceError"></candid-error>
 <table *ngIf="projectStatus">
   <tr>
     <td class="status-header">
@@ -18,7 +19,7 @@
     </td>
   </tr>
 </table>
-<div class="color-blue margin-left">Project-wise Status</div>
+<div *ngIf="projectStatus" class="color-blue margin-left">Project-wise Status</div>
 <table *ngIf="projectStatus" class="table-margin">
   <thead>
     <th class="grid-header">
