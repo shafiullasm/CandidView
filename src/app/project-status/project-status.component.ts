@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectStatusService } from './project-status.service';
-import { IProjectStatus, IMetricColors, IMetricQuality, IMetricQualityEngineeringPractice, IEnumColors } from './project-status';
+import { IProjectStatus, IMetricColors, IMetricQuality, IMetricScope, IMetricQualityEngineeringPractice, IEnumColors } from './project-status';
 
 @Component({
   selector: 'candid-status',
@@ -55,17 +55,50 @@ export class ProjectStatusComponent implements OnInit {
       element.colors = objColor;
     });
   }
-  colorChangeForScope(value: number): string {
+  colorChangeForScope(scopevalues: IMetricScope): string {
     let bgcolor: any;
-    if (value <= 90 && value >= 0) {
-      bgcolor = IEnumColors.Green;
-    } else if (value >= 90 && value <= 95) {
-      bgcolor = IEnumColors.Yellow;
+    let Colors: Array<any> = [];       
+    if (scopevalues.backlogPresent = 'Y') {
+      Colors[0] = IEnumColors.Green;
+    } else if (scopevalues.backlogPresent = 'P') {
+      Colors[0] = IEnumColors.Yellow;
     } else {
-      bgcolor = IEnumColors.Red;
+      Colors[0] = IEnumColors.Red;
     }
-    return bgcolor;
+    if (scopevalues.stories = 'Y') {
+      Colors[1] = IEnumColors.Green;
+    } else if (scopevalues.stories = 'P') {
+      Colors[1] = IEnumColors.Yellow;
+    } else {
+      Colors[1] = IEnumColors.Red;
+    }
+    if (scopevalues.developmentDependencies == 'Y') {
+      Colors[2] = IEnumColors.Green;
+    } else if (scopevalues.developmentDependencies = 'P') {
+      Colors[2] = IEnumColors.Yellow;
+    } else {
+      Colors[2] = IEnumColors.Red;
+    }
+    if (scopevalues.tgoDesign == 'Y' || scopevalues.tgoDesign == 'NA' ||scopevalues.tgoDesign == 'N' && scopevalues.noOfDaysFromStartDate <15) {
+      Colors[2] = IEnumColors.Green;
+    } else if (scopevalues.tgoDesign == 'N' && scopevalues.noOfDaysFromStartDate >=15 && scopevalues.noOfDaysFromStartDate <30 ) {
+      Colors[2] = IEnumColors.Yellow;
+    } else {
+      Colors[2] = IEnumColors.Red;
+    }   
+    if (scopevalues.tgoDesign == 'Y' || scopevalues.tgoDesign == 'NA') {
+      Colors[2] = IEnumColors.Green;
+    } else if (scopevalues.tgoDesign == 'N' && scopevalues.noOfDaysFromCodeFreezeDate >30 && scopevalues.noOfDaysFromCodeFreezeDate <=45 ) {
+      Colors[2] = IEnumColors.Yellow;
+    } else {
+      Colors[2] = IEnumColors.Red;
+    }   
+     bgcolor = this.overAllColor(Colors);
+      return bgcolor;
+
   }
+
+
   colorChangeForSchedule(value: number): string {
     let bgcolor: any;
     if (value >= 0) {
@@ -110,35 +143,24 @@ export class ProjectStatusComponent implements OnInit {
     return bgColor;
   }
   overAllColor(Colors: Array<string>): string {
-    let bgColor: any;
-    Colors.forEach(value => {
-      if (<any>value === IEnumColors.Red) {
-        bgColor = IEnumColors.Red;
-      }
-    });
-    Colors.forEach(value => {
-      if (<any>value === IEnumColors.Yellow) {
-        bgColor = IEnumColors.Yellow;
-      }
-    });
-    if (bgColor == null) {
-      bgColor = IEnumColors.Green;
-    }
+    let bgColor: any;    
+   bgColor = Colors.filter(element => <any>element === IEnumColors.Red).length > 0 ? IEnumColors.Red :
+                  Colors.filter(element => <any>element === IEnumColors.Yellow).length > 0 ? IEnumColors.Yellow : IEnumColors.Green;
     return bgColor;
   }
   colorChangeForQualityEngineeringPractice(qualityEngineering: IMetricQualityEngineeringPractice): string {
     let bgColor: any;
     let Colors: Array<any> = [];
-    if (qualityEngineering.tddCoverage >= 95) {
+    if (qualityEngineering.tddCoverage >= 80) {
       Colors[0] = IEnumColors.Green;
-    } else if (qualityEngineering.tddCoverage > 80 && qualityEngineering.tddCoverage <= 95) {
+    } else if (qualityEngineering.tddCoverage >= 70 && qualityEngineering.tddCoverage < 80) {
       Colors[0] = IEnumColors.Yellow;
     } else {
       Colors[0] = IEnumColors.Red;
     }
     if (qualityEngineering.bddCoverage >= 80) {
       Colors[1] = IEnumColors.Green;
-    } else if (qualityEngineering.bddCoverage > 80 && qualityEngineering.bddCoverage <= 65) {
+    } else if (qualityEngineering.bddCoverage >= 65 && qualityEngineering.bddCoverage < 80) {
       Colors[1] = IEnumColors.Yellow;
     } else {
       Colors[1] = IEnumColors.Red;
@@ -157,7 +179,7 @@ export class ProjectStatusComponent implements OnInit {
       Colors[3] = IEnumColors.Green;
     } else if (qualityEngineering.codeReviewDev.catastrophic === 0 &&
       qualityEngineering.codeReviewDev.majorDefectsWithoutWorkaround === 0 &&
-      qualityEngineering.codeReviewDev.majorDefectsWithWorkaround < 0 &&
+      qualityEngineering.codeReviewDev.majorDefectsWithWorkaround > 0 &&
       qualityEngineering.codeReviewDev.majorDefectsWithWorkaround < 5) {
       Colors[3] = IEnumColors.Yellow;
     } else {
@@ -170,7 +192,7 @@ export class ProjectStatusComponent implements OnInit {
       Colors[4] = IEnumColors.Green;
     } else if (qualityEngineering.codeReviewQA.catastrophic === 0 &&
       qualityEngineering.codeReviewQA.majorDefectsWithoutWorkaround === 0 &&
-      qualityEngineering.codeReviewQA.majorDefectsWithWorkaround < 0 &&
+      qualityEngineering.codeReviewQA.majorDefectsWithWorkaround > 0 &&
       qualityEngineering.codeReviewQA.majorDefectsWithWorkaround < 5) {
       Colors[4] = IEnumColors.Yellow;
     } else {

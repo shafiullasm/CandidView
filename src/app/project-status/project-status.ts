@@ -5,7 +5,7 @@ export interface IProjectStatus {
   internalOwner?: string;
   externalOwner?: string;
   teamSize?: number;
-  scope?: number;
+  scope?: IMetricScope;
   schedule?: number;
   quality?: IMetricQuality;
   colors?: IMetricColors;
@@ -18,6 +18,15 @@ export interface IMetricColors {
   quality?: string;
   qualityEngineeringPractice?: string;
   resource?: string;
+}
+export interface IMetricScope {
+  backlogPresent?:string;
+  stories?:string;
+  developmentDependencies?:string;
+  tgoDesign?:string;
+  tgoConstruction?:string;
+  noOfDaysFromStartDate?:number;
+  noOfDaysFromCodeFreezeDate?:number;
 }
 export interface IMetricQuality {
   requirementTestCoverage?: number;
