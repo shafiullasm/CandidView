@@ -53,8 +53,8 @@
   <tbody>
     <tr *ngFor='let status of projectStatus'>
       <td class="grid-sno col-md-0">{{status.slno}}</td>
-      <td class="col-md-2">{{status.programName}}</td>
-      <td class="col-md-0">{{status.owner}}</td>
+      <td class="col-md-2">{{status.programName}}<br>[{{status.externalOwner}}]</td>
+      <td class="col-md-0">{{status.internalOwner}}</td>
       <td class="text-align col-md-0">{{status.teamSize}}</td>
       <td class="col-md-2" [ngStyle]="{'background-color':status.colors.scope}">{{status.scope}}</td>
       <td class="col-md-2" [ngStyle]="{'background-color':status.colors.schedule}">{{status.schedule}}</td>

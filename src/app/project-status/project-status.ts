@@ -2,7 +2,8 @@ export interface IProjectStatus {
   slno?: number;
   buName?: string;
   programName?: string;
-  owner?: string;
+  internalOwner?: string;
+  externalOwner?: string;
   teamSize?: number;
   scope?: number;
   schedule?: number;
