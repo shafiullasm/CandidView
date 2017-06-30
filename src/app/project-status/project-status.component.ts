@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectStatusService } from './project-status.service';
-import { IProjectStatus, IMetricColors, IMetricQuality, IMetricScope, IMetricQualityEngineeringPractice, IEnumColors } from './project-status';
+import {
+  IProjectStatus, IMetricColors, IMetricQuality, IMetricScope,
+  IMetricQualityEngineeringPractice, IEnumColors
+} from './project-status';
 
 @Component({
   selector: 'candid-status',
@@ -57,7 +60,7 @@ export class ProjectStatusComponent implements OnInit {
   }
   colorChangeForScope(scopevalues: IMetricScope): string {
     let bgcolor: any;
-    let Colors: Array<any> = [];       
+    let Colors: Array<any> = [];
     if (scopevalues.backlogPresent = 'Y') {
       Colors[0] = IEnumColors.Green;
     } else if (scopevalues.backlogPresent = 'P') {
@@ -72,29 +75,32 @@ export class ProjectStatusComponent implements OnInit {
     } else {
       Colors[1] = IEnumColors.Red;
     }
-    if (scopevalues.developmentDependencies == 'Y') {
+    if (scopevalues.developmentDependencies === 'Y') {
       Colors[2] = IEnumColors.Green;
     } else if (scopevalues.developmentDependencies = 'P') {
       Colors[2] = IEnumColors.Yellow;
     } else {
       Colors[2] = IEnumColors.Red;
     }
-    if (scopevalues.tgoDesign == 'Y' || scopevalues.tgoDesign == 'NA' ||scopevalues.tgoDesign == 'N' && scopevalues.noOfDaysFromStartDate <15) {
+    if (scopevalues.tgoDesign === 'Y' || scopevalues.tgoDesign === 'NA' || scopevalues.tgoDesign === 'N' &&
+      scopevalues.noOfDaysFromStartDate < 15) {
       Colors[2] = IEnumColors.Green;
-    } else if (scopevalues.tgoDesign == 'N' && scopevalues.noOfDaysFromStartDate >=15 && scopevalues.noOfDaysFromStartDate <30 ) {
+    } else if (scopevalues.tgoDesign === 'N' && scopevalues.noOfDaysFromStartDate >= 15 &&
+      scopevalues.noOfDaysFromStartDate < 30) {
       Colors[2] = IEnumColors.Yellow;
     } else {
       Colors[2] = IEnumColors.Red;
-    }   
-    if (scopevalues.tgoDesign == 'Y' || scopevalues.tgoDesign == 'NA') {
+    }
+    if (scopevalues.tgoDesign === 'Y' || scopevalues.tgoDesign === 'NA') {
       Colors[2] = IEnumColors.Green;
-    } else if (scopevalues.tgoDesign == 'N' && scopevalues.noOfDaysFromCodeFreezeDate >30 && scopevalues.noOfDaysFromCodeFreezeDate <=45 ) {
+    } else if (scopevalues.tgoDesign === 'N' && scopevalues.noOfDaysFromCodeFreezeDate > 30 &&
+      scopevalues.noOfDaysFromCodeFreezeDate <= 45) {
       Colors[2] = IEnumColors.Yellow;
     } else {
       Colors[2] = IEnumColors.Red;
-    }   
-     bgcolor = this.overAllColor(Colors);
-      return bgcolor;
+    }
+    bgcolor = this.overAllColor(Colors);
+    return bgcolor;
 
   }
 
@@ -143,9 +149,9 @@ export class ProjectStatusComponent implements OnInit {
     return bgColor;
   }
   overAllColor(Colors: Array<string>): string {
-    let bgColor: any;    
-   bgColor = Colors.filter(element => <any>element === IEnumColors.Red).length > 0 ? IEnumColors.Red :
-                  Colors.filter(element => <any>element === IEnumColors.Yellow).length > 0 ? IEnumColors.Yellow : IEnumColors.Green;
+    let bgColor: any;
+    bgColor = Colors.filter(element => <any>element === IEnumColors.Red).length > 0 ? IEnumColors.Red :
+      Colors.filter(element => <any>element === IEnumColors.Yellow).length > 0 ? IEnumColors.Yellow : IEnumColors.Green;
     return bgColor;
   }
   colorChangeForQualityEngineeringPractice(qualityEngineering: IMetricQualityEngineeringPractice): string {

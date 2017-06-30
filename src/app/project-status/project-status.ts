@@ -20,13 +20,13 @@ export interface IMetricColors {
   resource?: string;
 }
 export interface IMetricScope {
-  backlogPresent?:string;
-  stories?:string;
-  developmentDependencies?:string;
-  tgoDesign?:string;
-  tgoConstruction?:string;
-  noOfDaysFromStartDate?:number;
-  noOfDaysFromCodeFreezeDate?:number;
+  backlogPresent?: string;
+  stories?: string;
+  developmentDependencies?: string;
+  tgoDesign?: string;
+  tgoConstruction?: string;
+  noOfDaysFromStartDate?: number;
+  noOfDaysFromCodeFreezeDate?: number;
 }
 export interface IMetricQuality {
   requirementTestCoverage?: number;
@@ -69,9 +69,9 @@ export interface IMetricSLA {
   defectRejectionRate?: number;
 }
 export enum IEnumColors {
-    Green = <any>'Green',
-    Yellow = <any>'Yellow',
-    Red = <any>'Red'
+  Green = <any>'Green',
+  Yellow = <any>'Yellow',
+  Red = <any>'Red'
 }
 
 

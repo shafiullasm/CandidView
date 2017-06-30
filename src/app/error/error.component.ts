@@ -1,9 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'candid-error',
   templateUrl: './error.html'
 })
-export class ErrorComponent { 
-     @Input() isServiceError:string;
+export class ErrorComponent {
+  @Input() isServiceError: string;
 }
