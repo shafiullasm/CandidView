@@ -20,61 +20,43 @@
   </tr>
 </table>
 <div *ngIf="projectStatus" class="color-blue margin-left">Project-wise Status</div>
-<table *ngIf="projectStatus" class="table-margin">
+<table *ngIf="projectStatus">
   <thead>
-    <th class="grid-header">
-      #
-    </th>
-    <th class="grid-header">
+    <th class="grid-header col-md-3">
       Program
     </th>
-    <th class="grid-header">
+    <th class="grid-header col-md-2">
       Owners
     </th>
-    <th class="grid-header">
+    <th class="grid-header col-md-0">
       TeamSize
     </th>
-    <th class="grid-header">
+    <th class="grid-header col-md-1">
       Scope
     </th>
-    <th class="grid-header">
+    <th class="grid-header col-md-1">
       Schedule
     </th>
-    <th class="grid-header">
+    <th class="grid-header col-md-2">
       Quality
     </th>
-    <th class="grid-header">
-      QualityEngineeringPractice
+    <th class="grid-header col-md-2">
+      Quality Engineering Practice
     </th>
-    <th class="grid-header">
+    <th class="grid-header col-md-1">
       Resource
     </th>
   </thead>
   <tbody>
     <tr *ngFor='let status of projectStatus'>
-      <td class="grid-sno col-md-0">{{status.slno}}</td>
-      <td class="col-md-2">{{status.programName}}<br>[{{status.externalOwner}}]</td>
-      <td class="col-md-0">{{status.internalOwner}}</td>
+      <td class="col-md-3"><b>{{status.programName}}</b><br>[{{status.externalOwner}}]</td>
+      <td class="col-md-2">{{status.internalOwner}}</td>
       <td class="text-align col-md-0">{{status.teamSize}}</td>
-      <td class="col-md-2" [ngStyle]="{'background-color':status.colors.scope}">{{status.scope.backlogPresent}} {{status.scope.stories}}
-                                                                                {{status.scope.developmentDependencies}} {{status.scope.tgoDesign}} {{status.scope.tgoConstruction}} 
-                                                                                {{status.scope.startDate}}
-      </td>
-      <td class="col-md-2" [ngStyle]="{'background-color':status.colors.schedule}">{{status.schedule}}</td>
-      <td class="col-md-2" [ngStyle]="{'background-color':status.colors.quality}">{{status.quality.requirementTestCoverage}} {{status.quality.averageLeadTime}} {{status.quality.defectLeakageQA}} {{status.quality.productionDefect}}
-      </td>
-      <td class="col-md-2" [ngStyle]="{'background-color':status.colors.qualityEngineeringPractice}"> {{status.qualityEngineeringPractice.tddCoverage}} {{status.qualityEngineeringPractice.bddCoverage}} {{status.qualityEngineeringPractice.mvpAdoption}} 
-  {{status.qualityEngineeringPractice.codeReviewDev.catastrophic}} 
-  {{status.qualityEngineeringPractice.codeReviewDev.majorDefectsWithoutWorkaround}} 
-  {{status.qualityEngineeringPractice.codeReviewDev.majorDefectsWithWorkaround}} 
-  {{status.qualityEngineeringPractice.codeReviewDev.minorDefects}}   
-  {{status.qualityEngineeringPractice.codeReviewQA.catastrophic}} 
-  {{status.qualityEngineeringPractice.codeReviewQA.majorDefectsWithoutWorkaround}} 
-  {{status.qualityEngineeringPractice.codeReviewQA.majorDefectsWithWorkaround}} 
-  {{status.qualityEngineeringPractice.codeReviewQA.minorDefects}}   
-  {{status.qualityEngineeringPractice.maintainabilityIndex}} 
-  {{status.qualityEngineeringPractice.cyclomaticComplexity}}</td>
-      <td class="col-md-2" [ngStyle]="{'background-color':status.colors.resource}"></td>
+      <td class="col-md-1" [ngStyle]="{'background-color':status.colors.scope}"></td>
+      <td class="col-md-1" [ngStyle]="{'background-color':status.colors.schedule}"></td>
+      <td class="col-md-2" [ngStyle]="{'background-color':status.colors.quality}"></td>
+      <td class="col-md-2" [ngStyle]="{'background-color':status.colors.qualityEngineeringPractice}"></td>
+      <td class="col-md-1" [ngStyle]="{'background-color':status.colors.resource}"></td>
     </tr>
   </tbody>
 </table>
