@@ -101,3 +101,7 @@ a {
     border-color: #ebccd1;
     text-align: center;
 }
+.row-align
+{
+    vertical-align: initial;
+}
