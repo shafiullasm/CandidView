@@ -12,6 +12,9 @@ export interface IProjectStatus {
   qualityEngineeringPractice?: IMetricQualityEngineeringPractice;
   resource?: IResource;
 }
+export class ProjectStatus implements IProjectStatus {
+}
+
 export interface IMetricColors {
   scope?: string;
   schedule?: string;

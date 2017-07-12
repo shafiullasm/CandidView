@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectStatusService } from './project-status.service';
 import {
-  IProjectStatus, IMetricColors, IMetricQuality, IMetricScope,
+  ProjectStatus, IProjectStatus, IMetricColors, IMetricQuality, IMetricScope,
   IMetricQualityEngineeringPractice, IEnumColors
 } from './project-status';
 
@@ -45,56 +45,60 @@ export class ProjectStatusComponent implements OnInit {
     );
   }
   processColors() {
+    let tempProjectStatus = new Array();
     this.projectStatus.forEach(element => {
-      let qualityValues: IMetricQuality = element.quality;
-      let qualityEngineering: IMetricQualityEngineeringPractice = element.qualityEngineeringPractice;
       let objColor: IMetricColors = {
         scope: this.colorChangeForScope(element.scope),
         schedule: this.colorChangeForSchedule(element.schedule),
-        quality: this.colorChangeForQuality(qualityValues),
-        qualityEngineeringPractice: this.colorChangeForQualityEngineeringPractice(qualityEngineering),
+        quality: this.colorChangeForQuality(element.quality),
+        qualityEngineeringPractice: this.colorChangeForQualityEngineeringPractice(element.qualityEngineeringPractice),
         resource: this.colorChangeForResource(element.resource.attrition, element.resource.availabilityofResource)
       };
-      element.colors = objColor;
+      let projStatus: IProjectStatus = new ProjectStatus();
+      projStatus = element;
+      projStatus.colors = objColor;
+      tempProjectStatus.push(projStatus);
     });
+
+    this.projectStatus = tempProjectStatus;
   }
-  colorChangeForScope(scopevalues: IMetricScope): string {
+  colorChangeForScope(scopeValues: IMetricScope): string {
     let bgcolor: any;
     let Colors: Array<any> = [];
-    if (scopevalues.backlogPresent = 'Y') {
+    if (scopeValues.backlogPresent === 'Y') {
       Colors[0] = IEnumColors.Green;
-    } else if (scopevalues.backlogPresent = 'P') {
+    } else if (scopeValues.backlogPresent === 'P') {
       Colors[0] = IEnumColors.Yellow;
     } else {
       Colors[0] = IEnumColors.Red;
     }
-    if (scopevalues.stories = 'Y') {
+    if (scopeValues.stories === 'Y') {
       Colors[1] = IEnumColors.Green;
-    } else if (scopevalues.stories = 'P') {
+    } else if (scopeValues.stories === 'P') {
       Colors[1] = IEnumColors.Yellow;
     } else {
       Colors[1] = IEnumColors.Red;
     }
-    if (scopevalues.developmentDependencies === 'Y') {
+    if (scopeValues.developmentDependencies === 'Y') {
       Colors[2] = IEnumColors.Green;
-    } else if (scopevalues.developmentDependencies = 'P') {
+    } else if (scopeValues.developmentDependencies === 'P') {
       Colors[2] = IEnumColors.Yellow;
     } else {
       Colors[2] = IEnumColors.Red;
     }
-    if (scopevalues.tgoDesign === 'Y' || scopevalues.tgoDesign === 'NA' || scopevalues.tgoDesign === 'N' &&
-      scopevalues.noOfDaysFromStartDate < 15) {
+    if (scopeValues.tgoDesign === 'Y' || scopeValues.tgoDesign === 'NA' || scopeValues.tgoDesign === 'N' &&
+      scopeValues.noOfDaysFromStartDate < 15) {
       Colors[2] = IEnumColors.Green;
-    } else if (scopevalues.tgoDesign === 'N' && scopevalues.noOfDaysFromStartDate >= 15 &&
-      scopevalues.noOfDaysFromStartDate < 30) {
+    } else if (scopeValues.tgoDesign === 'N' && scopeValues.noOfDaysFromStartDate >= 15 &&
+      scopeValues.noOfDaysFromStartDate < 30) {
       Colors[2] = IEnumColors.Yellow;
     } else {
       Colors[2] = IEnumColors.Red;
     }
-    if (scopevalues.tgoDesign === 'Y' || scopevalues.tgoDesign === 'NA') {
+    if (scopeValues.tgoDesign === 'Y' || scopeValues.tgoDesign === 'NA') {
       Colors[2] = IEnumColors.Green;
-    } else if (scopevalues.tgoDesign === 'N' && scopevalues.noOfDaysFromCodeFreezeDate > 30 &&
-      scopevalues.noOfDaysFromCodeFreezeDate <= 45) {
+    } else if (scopeValues.tgoDesign === 'N' && scopeValues.noOfDaysFromCodeFreezeDate > 30 &&
+      scopeValues.noOfDaysFromCodeFreezeDate <= 45) {
       Colors[2] = IEnumColors.Yellow;
     } else {
       Colors[2] = IEnumColors.Red;
