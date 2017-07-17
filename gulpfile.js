@@ -60,6 +60,7 @@ gulp.task("node_modules", () => {
         'reflect-metadata/Reflect.js',
         'rxjs/**',
         'zone.js/dist/**',
+        'bootstrap/dist/**',
         '@angular/**'
     ], { cwd: "node_modules/**" }) /* Glob required here. */
         .pipe(gulp.dest("dist/node_modules"));

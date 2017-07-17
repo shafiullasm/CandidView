@@ -82,19 +82,23 @@ export class ProjectStatusComponent implements OnInit {
     } else {
       Colors[2] = IEnumColors.Red;
     }
-    if (scopeValues.tgoDesign.toUpperCase() === 'Y' || scopeValues.tgoDesign.toUpperCase() === 'YES' || scopeValues.tgoDesign === 'NA' || ((scopeValues.tgoDesign.toUpperCase() === 'N' || scopeValues.tgoDesign.toUpperCase() === 'NO') &&
-      scopeValues.noOfDaysFromStartDate < 15)) {
+    if (scopeValues.tgoDesign.toUpperCase() === 'Y' || scopeValues.tgoDesign.toUpperCase() === 'YES'
+      || scopeValues.tgoDesign === 'NA' || ((scopeValues.tgoDesign.toUpperCase() === 'N' || scopeValues.tgoDesign.toUpperCase() === 'NO') &&
+        scopeValues.noOfDaysFromStartDate < 15)) {
       Colors[2] = IEnumColors.Green;
-    } else if ((scopeValues.tgoDesign.toUpperCase() === 'N' || scopeValues.tgoDesign.toUpperCase() === 'NO') && (scopeValues.noOfDaysFromStartDate >= 15 &&
-      scopeValues.noOfDaysFromStartDate < 30)) {
+    } else if ((scopeValues.tgoDesign.toUpperCase() === 'N' || scopeValues.tgoDesign.toUpperCase() === 'NO')
+      && (scopeValues.noOfDaysFromStartDate >= 15 &&
+        scopeValues.noOfDaysFromStartDate < 30)) {
       Colors[2] = IEnumColors.Yellow;
     } else {
       Colors[2] = IEnumColors.Red;
     }
-    if (scopeValues.tgoConstruction.toUpperCase() === 'Y' || scopeValues.tgoConstruction.toUpperCase() === 'YES' || scopeValues.tgoConstruction === 'NA') {
+    if (scopeValues.tgoConstruction.toUpperCase() === 'Y' || scopeValues.tgoConstruction.toUpperCase() === 'YES'
+      || scopeValues.tgoConstruction === 'NA') {
       Colors[2] = IEnumColors.Green;
-    } else if ((scopeValues.tgoConstruction.toUpperCase() === 'N' || scopeValues.tgoConstruction.toUpperCase() === 'NO') && (scopeValues.noOfDaysFromCodeFreezeDate > 30 &&
-      scopeValues.noOfDaysFromCodeFreezeDate <= 45)) {
+    } else if ((scopeValues.tgoConstruction.toUpperCase() === 'N' || scopeValues.tgoConstruction.toUpperCase() === 'NO')
+      && (scopeValues.noOfDaysFromCodeFreezeDate > 30 &&
+        scopeValues.noOfDaysFromCodeFreezeDate <= 45)) {
       Colors[2] = IEnumColors.Yellow;
     } else {
       Colors[2] = IEnumColors.Red;
@@ -198,7 +202,7 @@ export class ProjectStatusComponent implements OnInit {
       qualityEngineering.codeReviewQA.minorDefects === 0) {
       Colors[4] = IEnumColors.Green;
     } else if (qualityEngineering.codeReviewQA.catastrophic === 0 &&
-      qualityEngineering.codeReviewQA.majorDefectsWithoutWorkaround === 0 && 
+      qualityEngineering.codeReviewQA.majorDefectsWithoutWorkaround === 0 &&
       qualityEngineering.codeReviewQA.majorDefectsWithWorkaround < 5) {
       Colors[4] = IEnumColors.Yellow;
     } else if (qualityEngineering.codeReviewQA.catastrophic > 0 ||
