@@ -11,7 +11,7 @@ import {
 })
 export class ProjectStatusComponent implements OnInit {
   currentDate: string = Date();
-  projectStatus: IProjectStatus[];
+  projectStatus: IProjectStatus[] = new Array();
   metricColor: IMetricColors[];
   buName: Array<string> = [];
   isServiceError: boolean;
@@ -22,8 +22,7 @@ export class ProjectStatusComponent implements OnInit {
   getProjectDetails() {
     this.projectStatusService.getProjectDetails().subscribe(
       data => {
-        this.projectStatus = data;
-        this.processColors();
+        this.processColors(data);
         let i = 0;
         let name: string;
         this.projectStatus.forEach(element => {
@@ -44,9 +43,8 @@ export class ProjectStatusComponent implements OnInit {
       }
     );
   }
-  processColors() {
-    let tempProjectStatus = new Array();
-    this.projectStatus.forEach(element => {
+  processColors(data: IProjectStatus[]) {
+    data.forEach(element => {
       let objColor: IMetricColors = {
         scope: this.colorChangeForScope(element.scope),
         schedule: this.colorChangeForSchedule(element.schedule),
@@ -57,48 +55,46 @@ export class ProjectStatusComponent implements OnInit {
       let projStatus: IProjectStatus = new ProjectStatus();
       projStatus = element;
       projStatus.colors = objColor;
-      tempProjectStatus.push(projStatus);
+      this.projectStatus.push(projStatus);
     });
-
-    this.projectStatus = tempProjectStatus;
   }
   colorChangeForScope(scopeValues: IMetricScope): string {
     let bgcolor: any;
     let Colors: Array<any> = [];
-    if (scopeValues.backlogPresent === 'Y') {
+    if (scopeValues.backlogPresent.toUpperCase() === 'Y' || scopeValues.backlogPresent.toUpperCase() === 'YES') {
       Colors[0] = IEnumColors.Green;
     } else if (scopeValues.backlogPresent === 'P') {
       Colors[0] = IEnumColors.Yellow;
     } else {
       Colors[0] = IEnumColors.Red;
     }
-    if (scopeValues.stories === 'Y') {
+    if (scopeValues.stories.toUpperCase() === 'Y' || scopeValues.stories.toUpperCase() === 'YES') {
       Colors[1] = IEnumColors.Green;
     } else if (scopeValues.stories === 'P') {
       Colors[1] = IEnumColors.Yellow;
     } else {
       Colors[1] = IEnumColors.Red;
     }
-    if (scopeValues.developmentDependencies === 'Y') {
+    if (scopeValues.developmentDependencies.toUpperCase() === 'Y' || scopeValues.developmentDependencies.toUpperCase() === 'YES') {
       Colors[2] = IEnumColors.Green;
-    } else if (scopeValues.developmentDependencies === 'P') {
+    } else if (scopeValues.developmentDependencies.toUpperCase() === 'P') {
       Colors[2] = IEnumColors.Yellow;
     } else {
       Colors[2] = IEnumColors.Red;
     }
-    if (scopeValues.tgoDesign === 'Y' || scopeValues.tgoDesign === 'NA' || scopeValues.tgoDesign === 'N' &&
-      scopeValues.noOfDaysFromStartDate < 15) {
+    if (scopeValues.tgoDesign.toUpperCase() === 'Y' || scopeValues.tgoDesign.toUpperCase() === 'YES' || scopeValues.tgoDesign === 'NA' || ((scopeValues.tgoDesign.toUpperCase() === 'N' || scopeValues.tgoDesign.toUpperCase() === 'NO') &&
+      scopeValues.noOfDaysFromStartDate < 15)) {
       Colors[2] = IEnumColors.Green;
-    } else if (scopeValues.tgoDesign === 'N' && scopeValues.noOfDaysFromStartDate >= 15 &&
-      scopeValues.noOfDaysFromStartDate < 30) {
+    } else if ((scopeValues.tgoDesign.toUpperCase() === 'N' || scopeValues.tgoDesign.toUpperCase() === 'NO') && (scopeValues.noOfDaysFromStartDate >= 15 &&
+      scopeValues.noOfDaysFromStartDate < 30)) {
       Colors[2] = IEnumColors.Yellow;
     } else {
       Colors[2] = IEnumColors.Red;
     }
-    if (scopeValues.tgoDesign === 'Y' || scopeValues.tgoDesign === 'NA') {
+    if (scopeValues.tgoConstruction.toUpperCase() === 'Y' || scopeValues.tgoConstruction.toUpperCase() === 'YES' || scopeValues.tgoConstruction === 'NA') {
       Colors[2] = IEnumColors.Green;
-    } else if (scopeValues.tgoDesign === 'N' && scopeValues.noOfDaysFromCodeFreezeDate > 30 &&
-      scopeValues.noOfDaysFromCodeFreezeDate <= 45) {
+    } else if ((scopeValues.tgoConstruction.toUpperCase() === 'N' || scopeValues.tgoConstruction.toUpperCase() === 'NO') && (scopeValues.noOfDaysFromCodeFreezeDate > 30 &&
+      scopeValues.noOfDaysFromCodeFreezeDate <= 45)) {
       Colors[2] = IEnumColors.Yellow;
     } else {
       Colors[2] = IEnumColors.Red;
@@ -189,10 +185,11 @@ export class ProjectStatusComponent implements OnInit {
       Colors[3] = IEnumColors.Green;
     } else if (qualityEngineering.codeReviewDev.catastrophic === 0 &&
       qualityEngineering.codeReviewDev.majorDefectsWithoutWorkaround === 0 &&
-      qualityEngineering.codeReviewDev.majorDefectsWithWorkaround > 0 &&
       qualityEngineering.codeReviewDev.majorDefectsWithWorkaround < 5) {
       Colors[3] = IEnumColors.Yellow;
-    } else {
+    } else if (qualityEngineering.codeReviewDev.catastrophic > 0 ||
+      qualityEngineering.codeReviewDev.majorDefectsWithoutWorkaround > 0 ||
+      qualityEngineering.codeReviewDev.majorDefectsWithWorkaround > 5) {
       Colors[3] = IEnumColors.Red;
     }
     if (qualityEngineering.codeReviewQA.catastrophic === 0 &&
@@ -201,12 +198,13 @@ export class ProjectStatusComponent implements OnInit {
       qualityEngineering.codeReviewQA.minorDefects === 0) {
       Colors[4] = IEnumColors.Green;
     } else if (qualityEngineering.codeReviewQA.catastrophic === 0 &&
-      qualityEngineering.codeReviewQA.majorDefectsWithoutWorkaround === 0 &&
-      qualityEngineering.codeReviewQA.majorDefectsWithWorkaround > 0 &&
+      qualityEngineering.codeReviewQA.majorDefectsWithoutWorkaround === 0 && 
       qualityEngineering.codeReviewQA.majorDefectsWithWorkaround < 5) {
       Colors[4] = IEnumColors.Yellow;
-    } else {
-      Colors[4] = IEnumColors.Red;
+    } else if (qualityEngineering.codeReviewQA.catastrophic > 0 ||
+      qualityEngineering.codeReviewQA.majorDefectsWithoutWorkaround > 0 ||
+      qualityEngineering.codeReviewQA.majorDefectsWithWorkaround > 5) {
+      Colors[3] = IEnumColors.Red;
     }
     if (qualityEngineering.maintainabilityIndex >= 60) {
       Colors[5] = IEnumColors.Green;
