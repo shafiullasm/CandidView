@@ -1,0 +1,39 @@
+<label class="color-blue">Risks/Issues/Dependencies</label>
+<div class="scrollitrisk">
+    <table *ngIf="riskStatus">
+        <thead>
+            <th class="grid-header">
+                #
+            </th>
+            <th class="grid-header">
+                Type
+            </th>
+            <th class="grid-header">
+                Program/Team
+            </th>
+            <th class="grid-header">
+                Description
+            </th>
+            <th class="grid-header">
+                Owners
+            </th>
+            <th class="grid-header">
+                Exposure/Severity
+            </th>
+            <th class="grid-header">
+                Status
+            </th>
+        </thead>
+        <tbody>
+            <tr *ngFor='let status of riskStatus'>
+                <td>{{status.slno}} </td>
+                <td> {{status.type}} </td>
+                <td> {{status.program}} </td>
+                <td> {{status.description}} </td>
+                <td>{{status.owner}} </td>
+                <td> {{status.exposure}} </td>
+                <td> {{status.status}} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

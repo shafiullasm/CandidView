@@ -1,0 +1,34 @@
+<candid-error [isServiceError]="isServiceError"></candid-error>
+<table border="0" class="status" *ngIf="overallStatus">
+  <tr>
+    <td colspan="4">
+      <p class="color-blue">Overall Status</p>
+    </td>
+  </tr>
+  <tr class="row-align">
+    <td class="col-md-2">
+      <div class="circle" [ngStyle]="{'background-color':overallStatus.scope}"></div>
+      <p class="color-gray">Scope</p>
+    </td>
+    <td class="col-md-2">
+      <div class="circle" [ngStyle]="{'background-color':overallStatus.schedule}"></div>
+      <p class="color-gray">Schedule</p>
+    </td>
+    <td class="col-md-2">
+      <div class="circle" [ngStyle]="{'background-color':overallStatus.quality}"></div>
+      <p class="color-gray">Quality</p>
+    </td>
+    <td class="col-md-2">
+      <div class="circle" [ngStyle]="{'background-color':overallStatus.sla}"></div>
+      <p class="color-gray">SLA</p>
+    </td>
+    <td class="col-md-2">
+      <div class="circle" [ngStyle]="{'background-color':overallStatus.qualityengineeringpractice}"></div>
+      <p class="color-gray">Quality Engineering Practice</p>
+    </td>
+    <td class="col-md-2">
+      <div class="circle" [ngStyle]="{'background-color':overallStatus.qualityengineeringpractice}"></div>
+      <p class="color-gray">Resource</p>
+    </td>
+  </tr>
+</table>

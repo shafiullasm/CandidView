@@ -1,0 +1,69 @@
+<table>
+    <tr>
+        <td class="weekcandid-header">
+            <h5>Weekly Status
+                <p class="text-align">{{currentDate| date: 'mediumDate'}}</p>
+            </h5>
+        </td>
+    </tr>
+</table>
+<candid-highlights-status></candid-highlights-status>
+<candid-risk-status></candid-risk-status>
+<label class="color-blue">Timelines</label>
+<div class="scrollittimeline">
+    <table>
+        <thead>
+            <th class="grid-header">
+                <span> WorkStream</span>
+            </th>
+            <th class="grid-header">
+                <span> Sprint Completion 4/19</span>
+            </th>
+            <th class="grid-header">
+                <span> Code Freeze 4/20</span>
+            </th>
+            <th class="grid-header">
+                <span> Rel.Integration 4/24</span>
+            </th>
+            <th class="grid-header">
+                <span> UAT 5/4</span>
+            </th>
+            <th class="grid-header">
+                <span> Pre-Prod 5/8</span>
+            </th>
+            <th class="grid-header">
+                <span> Prod 5/17</span>
+            </th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>EAC Big Web</td>
+            </tr>
+            <tr>
+                <td>EAC Mobile Web</td>
+            </tr>
+            <tr>
+                <td>Global Mobile Web</td>
+            </tr>
+            <tr>
+                <td>Global Big Web</td>
+            </tr>
+            <tr>
+                <td>SPS</td>
+            </tr>
+            <tr>
+                <td colspan="5" class="text-align">
+                    <span class="color-black">Not Started</span>
+
+                    <span class="bgcolor-blue"> On Track</span>
+
+                    <span class="weekcandid-yellow"> Risk/Issue</span>
+
+                    <span class="weekcandid-red"> Critical</span>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>
