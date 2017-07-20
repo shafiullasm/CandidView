@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProjectStatusService } from './project-status.service';
 import {
   ProjectStatus, IProjectStatus, IMetricColors, IMetricQuality, IMetricScope,
-  IMetricQualityEngineeringPractice, IEnumColors
+  IMetricQualityEngineeringPractice, IEnumColors, IMetricRemark, MetricRemark
 } from './project-status';
 
 @Component({
@@ -15,6 +15,7 @@ export class ProjectStatusComponent implements OnInit {
   metricColor: IMetricColors[];
   buName: Array<string> = [];
   isServiceError: boolean;
+
   constructor(public projectStatusService: ProjectStatusService) { }
   ngOnInit() {
     this.getProjectDetails();
@@ -45,12 +46,14 @@ export class ProjectStatusComponent implements OnInit {
   }
   processColors(data: IProjectStatus[]) {
     data.forEach(element => {
+      let scopeData = this.colorChangeForScope(element.scope);
       let objColor: IMetricColors = {
-        scope: this.colorChangeForScope(element.scope),
+        scope: scopeData.color,
         schedule: this.colorChangeForSchedule(element.schedule),
         quality: this.colorChangeForQuality(element.quality),
         qualityEngineeringPractice: this.colorChangeForQualityEngineeringPractice(element.qualityEngineeringPractice),
-        resource: this.colorChangeForResource(element.resource.attrition, element.resource.availabilityofResource)
+        resource: this.colorChangeForResource(element.resource.attrition, element.resource.availabilityofResource),
+        scopeRemarks: scopeData.remarks
       };
       let projStatus: IProjectStatus = new ProjectStatus();
       projStatus = element;
@@ -58,54 +61,86 @@ export class ProjectStatusComponent implements OnInit {
       this.projectStatus.push(projStatus);
     });
   }
-  colorChangeForScope(scopeValues: IMetricScope): string {
-    let bgcolor: any;
+
+  colorChangeForScope(scopeValues: IMetricScope): any {
     let Colors: Array<any> = [];
+    let Remarks: Array<IMetricRemark> = [];
+
+    let scopeRemark: IMetricRemark = new MetricRemark();
     if (scopeValues.backlogPresent.toUpperCase() === 'Y' || scopeValues.backlogPresent.toUpperCase() === 'YES') {
       Colors[0] = IEnumColors.Green;
     } else if (scopeValues.backlogPresent === 'P') {
       Colors[0] = IEnumColors.Yellow;
+      scopeRemark.reason = "Partial avaialability of Backlog for atleast 2 sprint";
+      Remarks.push(scopeRemark);
     } else {
       Colors[0] = IEnumColors.Red;
+      scopeRemark.reason = "Do not have atleast 2 sprints worth of Backlog";
+      Remarks.push(scopeRemark);
     }
+
+    scopeRemark = new MetricRemark();
     if (scopeValues.stories.toUpperCase() === 'Y' || scopeValues.stories.toUpperCase() === 'YES') {
       Colors[1] = IEnumColors.Green;
     } else if (scopeValues.stories === 'P') {
       Colors[1] = IEnumColors.Yellow;
+      scopeRemark.reason = "Few User stories are not well defined and A/Cs are not created for the upcoming 1st sprint and few stories are not below 5 story points";
+      Remarks.push(scopeRemark);
     } else {
       Colors[1] = IEnumColors.Red;
+      scopeRemark.reason = "All User stories are not well defined and A/Cs are not created for the upcoming 1st sprint and all stories are not below 5 story points";
+      Remarks.push(scopeRemark);
     }
+    
+    scopeRemark = new MetricRemark();
     if (scopeValues.developmentDependencies.toUpperCase() === 'Y' || scopeValues.developmentDependencies.toUpperCase() === 'YES') {
       Colors[2] = IEnumColors.Green;
     } else if (scopeValues.developmentDependencies.toUpperCase() === 'P') {
       Colors[2] = IEnumColors.Yellow;
+      scopeRemark.reason = "Few Development Dependencies are not identified for the upcoming sprint and there is no impact on timelines committed by the dependent team";
+      Remarks.push(scopeRemark);
     } else {
       Colors[2] = IEnumColors.Red;
+      scopeRemark.reason = "All Development Dependencies are not identified for the upcoming sprint and there is impact on timelines committed by the dependent team";
+      Remarks.push(scopeRemark);
     }
+    
+    scopeRemark = new MetricRemark();
     if (scopeValues.tgoDesign.toUpperCase() === 'Y' || scopeValues.tgoDesign.toUpperCase() === 'YES'
       || scopeValues.tgoDesign === 'NA' || ((scopeValues.tgoDesign.toUpperCase() === 'N' || scopeValues.tgoDesign.toUpperCase() === 'NO') &&
         scopeValues.noOfDaysFromStartDate < 15)) {
-      Colors[2] = IEnumColors.Green;
+      Colors[3] = IEnumColors.Green;
     } else if ((scopeValues.tgoDesign.toUpperCase() === 'N' || scopeValues.tgoDesign.toUpperCase() === 'NO')
       && (scopeValues.noOfDaysFromStartDate >= 15 &&
         scopeValues.noOfDaysFromStartDate < 30)) {
-      Colors[2] = IEnumColors.Yellow;
+      Colors[3] = IEnumColors.Yellow;
+      scopeRemark.reason = "Pending TGO Design review and #" + scopeValues.noOfDaysFromStartDate + " days over from project start date";
+      Remarks.push(scopeRemark);
     } else {
-      Colors[2] = IEnumColors.Red;
+      Colors[3] = IEnumColors.Red;
+      scopeRemark.reason = "Pending TGO Design review";
+      Remarks.push(scopeRemark);
     }
+
+    scopeRemark = new MetricRemark();
     if (scopeValues.tgoConstruction.toUpperCase() === 'Y' || scopeValues.tgoConstruction.toUpperCase() === 'YES'
       || scopeValues.tgoConstruction === 'NA') {
-      Colors[2] = IEnumColors.Green;
+      Colors[4] = IEnumColors.Green;
     } else if ((scopeValues.tgoConstruction.toUpperCase() === 'N' || scopeValues.tgoConstruction.toUpperCase() === 'NO')
       && (scopeValues.noOfDaysFromCodeFreezeDate > 30 &&
         scopeValues.noOfDaysFromCodeFreezeDate <= 45)) {
-      Colors[2] = IEnumColors.Yellow;
+      Colors[4] = IEnumColors.Yellow;
+      scopeRemark.reason = "Pending TGO Construction review and #" + scopeValues.noOfDaysFromCodeFreezeDate + " days left for code freeze";
+      Remarks.push(scopeRemark);
     } else {
-      Colors[2] = IEnumColors.Red;
+      Colors[4] = IEnumColors.Red;
+      scopeRemark.reason = "Pending TGO Construction review";
+      Remarks.push(scopeRemark);
     }
-    bgcolor = this.overAllColor(Colors);
-    return bgcolor;
-
+    
+    let bgcolor = this.overAllColor(Colors);
+    let scopeData = { "color": bgcolor, "remarks": Remarks };
+    return scopeData;
   }
 
 

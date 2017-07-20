@@ -15,13 +15,27 @@ export interface IProjectStatus {
 export class ProjectStatus implements IProjectStatus {
 }
 
+
+export class MetricRemark implements IMetricRemark {
+}
+
 export interface IMetricColors {
   scope?: string;
   schedule?: string;
   quality?: string;
   qualityEngineeringPractice?: string;
   resource?: string;
+
+
+  scopeRemarks?: IMetricRemark[];
 }
+
+export interface IMetricRemark {
+  reason?: string;
+  plan?: string;
+  timeline?: string;
+}
+
 export interface IMetricScope {
   backlogPresent?: string;
   stories?: string;
@@ -71,6 +85,7 @@ export interface IMetricSLA {
   sev2DefectLeakageProd?: number;
   defectRejectionRate?: number;
 }
+
 export enum IEnumColors {
   Green = <any>'Green',
   Yellow = <any>'Yellow',
