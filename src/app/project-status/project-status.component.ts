@@ -62,50 +62,46 @@ export class ProjectStatusComponent implements OnInit {
     });
   }
 
+  formRemarks(reason: string): IMetricRemark {
+    let remark: IMetricRemark = new MetricRemark();
+    remark.reason = reason;
+    return remark;
+  }
+
   colorChangeForScope(scopeValues: IMetricScope): any {
     let Colors: Array<any> = [];
     let Remarks: Array<IMetricRemark> = [];
 
-    let scopeRemark: IMetricRemark = new MetricRemark();
     if (scopeValues.backlogPresent.toUpperCase() === 'Y' || scopeValues.backlogPresent.toUpperCase() === 'YES') {
       Colors[0] = IEnumColors.Green;
     } else if (scopeValues.backlogPresent === 'P') {
       Colors[0] = IEnumColors.Yellow;
-      scopeRemark.reason = "Partial avaialability of Backlog for atleast 2 sprint";
-      Remarks.push(scopeRemark);
+      Remarks.push(this.formRemarks("Partial avaialability of Backlog for atleast 2 sprint"));
     } else {
       Colors[0] = IEnumColors.Red;
-      scopeRemark.reason = "Do not have atleast 2 sprints worth of Backlog";
-      Remarks.push(scopeRemark);
+      Remarks.push(this.formRemarks("Do not have atleast 2 sprints worth of Backlog"));
     }
 
-    scopeRemark = new MetricRemark();
     if (scopeValues.stories.toUpperCase() === 'Y' || scopeValues.stories.toUpperCase() === 'YES') {
       Colors[1] = IEnumColors.Green;
     } else if (scopeValues.stories === 'P') {
       Colors[1] = IEnumColors.Yellow;
-      scopeRemark.reason = "Few User stories are not well defined and A/Cs are not created for the upcoming 1st sprint and few stories are not below 5 story points";
-      Remarks.push(scopeRemark);
+      Remarks.push(this.formRemarks("Few User stories are not well defined and A/Cs are not created for the upcoming 1st sprint and few stories are not below 5 story points"));
     } else {
       Colors[1] = IEnumColors.Red;
-      scopeRemark.reason = "All User stories are not well defined and A/Cs are not created for the upcoming 1st sprint and all stories are not below 5 story points";
-      Remarks.push(scopeRemark);
+      Remarks.push(this.formRemarks("All User stories are not well defined and A/Cs are not created for the upcoming 1st sprint and all stories are not below 5 story points"));
     }
-    
-    scopeRemark = new MetricRemark();
+
     if (scopeValues.developmentDependencies.toUpperCase() === 'Y' || scopeValues.developmentDependencies.toUpperCase() === 'YES') {
       Colors[2] = IEnumColors.Green;
     } else if (scopeValues.developmentDependencies.toUpperCase() === 'P') {
       Colors[2] = IEnumColors.Yellow;
-      scopeRemark.reason = "Few Development Dependencies are not identified for the upcoming sprint and there is no impact on timelines committed by the dependent team";
-      Remarks.push(scopeRemark);
+      Remarks.push(this.formRemarks("Few Development Dependencies are not identified for the upcoming sprint and there is no impact on timelines committed by the dependent team"));
     } else {
       Colors[2] = IEnumColors.Red;
-      scopeRemark.reason = "All Development Dependencies are not identified for the upcoming sprint and there is impact on timelines committed by the dependent team";
-      Remarks.push(scopeRemark);
+      Remarks.push(this.formRemarks("All Development Dependencies are not identified for the upcoming sprint and there is impact on timelines committed by the dependent team"));
     }
-    
-    scopeRemark = new MetricRemark();
+
     if (scopeValues.tgoDesign.toUpperCase() === 'Y' || scopeValues.tgoDesign.toUpperCase() === 'YES'
       || scopeValues.tgoDesign === 'NA' || ((scopeValues.tgoDesign.toUpperCase() === 'N' || scopeValues.tgoDesign.toUpperCase() === 'NO') &&
         scopeValues.noOfDaysFromStartDate < 15)) {
@@ -114,15 +110,12 @@ export class ProjectStatusComponent implements OnInit {
       && (scopeValues.noOfDaysFromStartDate >= 15 &&
         scopeValues.noOfDaysFromStartDate < 30)) {
       Colors[3] = IEnumColors.Yellow;
-      scopeRemark.reason = "Pending TGO Design review and #" + scopeValues.noOfDaysFromStartDate + " days over from project start date";
-      Remarks.push(scopeRemark);
+      Remarks.push(this.formRemarks("Pending TGO Design review and #" + scopeValues.noOfDaysFromStartDate + " days over from project start date"));
     } else {
       Colors[3] = IEnumColors.Red;
-      scopeRemark.reason = "Pending TGO Design review";
-      Remarks.push(scopeRemark);
+      Remarks.push(this.formRemarks("Pending TGO Design review"));
     }
 
-    scopeRemark = new MetricRemark();
     if (scopeValues.tgoConstruction.toUpperCase() === 'Y' || scopeValues.tgoConstruction.toUpperCase() === 'YES'
       || scopeValues.tgoConstruction === 'NA') {
       Colors[4] = IEnumColors.Green;
@@ -130,14 +123,12 @@ export class ProjectStatusComponent implements OnInit {
       && (scopeValues.noOfDaysFromCodeFreezeDate > 30 &&
         scopeValues.noOfDaysFromCodeFreezeDate <= 45)) {
       Colors[4] = IEnumColors.Yellow;
-      scopeRemark.reason = "Pending TGO Construction review and #" + scopeValues.noOfDaysFromCodeFreezeDate + " days left for code freeze";
-      Remarks.push(scopeRemark);
+      Remarks.push(this.formRemarks("Pending TGO Construction review and #" + scopeValues.noOfDaysFromCodeFreezeDate + " days left for code freeze"));
     } else {
       Colors[4] = IEnumColors.Red;
-      scopeRemark.reason = "Pending TGO Construction review";
-      Remarks.push(scopeRemark);
+      Remarks.push(this.formRemarks("Pending TGO Construction review"));
     }
-    
+
     let bgcolor = this.overAllColor(Colors);
     let scopeData = { "color": bgcolor, "remarks": Remarks };
     return scopeData;
