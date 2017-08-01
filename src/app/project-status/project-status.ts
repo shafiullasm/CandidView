@@ -11,6 +11,7 @@ export interface IProjectStatus {
   colors?: IMetricColors;
   qualityEngineeringPractice?: IMetricQualityEngineeringPractice;
   resource?: IResource;
+  release?: string;
 }
 export class ProjectStatus implements IProjectStatus {
 }
@@ -25,9 +26,11 @@ export interface IMetricColors {
   quality?: string;
   qualityEngineeringPractice?: string;
   resource?: string;
-
-
   scopeRemarks?: IMetricRemark[];
+  scheduleRemarks?: IMetricRemark[];
+  qualityRemarks?: IMetricRemark[];
+  qualityEngineeringRemarks?: IMetricRemark[];
+  resourceRemarks?: IMetricRemark[];
 }
 
 export interface IMetricRemark {

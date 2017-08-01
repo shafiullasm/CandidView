@@ -63,10 +63,42 @@
         <td class="col-md-1" [ngStyle]="{'background-color':status.colors.resource}"></td>
         <td class="col-md-3">
           <div *ngIf="status.colors.scope == 'Red' || status.colors.scope == 'Yellow'">
-            Reason for SCOPE
+            <b>Reason for Scope:
             <div [ngStyle]="{'color':status.colors.scope}" class="remarkHead">{{status.colors.scope}}</div>
-            <br>
+            </b><br>
             <div *ngFor="let remark of status.colors.scopeRemarks">
+              * {{remark.reason}}
+            </div>
+          </div>
+          <div *ngIf="status.colors.schedule == 'Red' || status.colors.schedule == 'Yellow'">
+            <b>Reason for Schedule:
+            <div [ngStyle]="{'color':status.colors.schedule}" class="remarkHead">{{status.colors.schedule}}</div>
+            </b><br>
+            <div *ngFor="let remark of status.colors.scheduleRemarks">
+              * {{remark.reason}}
+            </div>
+          </div>
+          <div *ngIf="status.colors.quality == 'Red' || status.colors.quality == 'Yellow'">
+            <b>Reason for Quality:
+            <div [ngStyle]="{'color':status.colors.quality}" class="remarkHead">{{status.colors.quality}}</div>
+            </b><br>
+            <div *ngFor="let remark of status.colors.qualityRemarks">
+              * {{remark.reason}}
+            </div>
+          </div>
+          <div *ngIf="status.colors.qualityEngineeringPractice == 'Red' || status.colors.qualityEngineeringPractice == 'Yellow'">
+            <b>Reason for Engineering Practice:
+            <div [ngStyle]="{'color':status.colors.qualityEngineeringPractice}" class="remarkHead">{{status.colors.qualityEngineeringPractice}}</div>
+            </b><br>
+            <div *ngFor="let remark of status.colors.qualityEngineeringRemarks">
+              * {{remark.reason}}
+            </div>
+          </div>
+          <div *ngIf="status.colors.resource == 'Red' || status.colors.resource == 'Yellow'">
+            <b>Reason for Quality:
+            <div [ngStyle]="{'color':status.colors.resource}" class="remarkHead">{{status.colors.resource}}</div>
+            </b><br>
+            <div *ngFor="let remark of status.colors.resourceRemarks">
               * {{remark.reason}}
             </div>
           </div>
