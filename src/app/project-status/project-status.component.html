@@ -95,12 +95,12 @@
             </div>
           </div>
           <div *ngIf="status.colors.resource == 'Red' || status.colors.resource == 'Yellow'">
-            <b>Reason for Quality:
+            <b>Reason for Resource:
             <div [ngStyle]="{'color':status.colors.resource}" class="remarkHead">{{status.colors.resource}}</div>
             </b><br>
-            <div *ngFor="let remark of status.colors.resourceRemarks">
+            <!--<div *ngFor="let remark of status.colors.resourceRemarks">
               * {{remark.reason}}
-            </div>
+            </div>-->
           </div>
         </td>
       </tr>
