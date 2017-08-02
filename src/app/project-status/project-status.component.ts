@@ -206,25 +206,25 @@ export class ProjectStatusComponent implements OnInit {
     let Colors: Array<any> = [];
     let Remarks: Array<IMetricRemark> = [];
 
-    if (qualityEngineering.tddCoverage >= 80) {
+    if (qualityEngineering.tddCoverage >= 80 || qualityEngineering.tddCoverage === 0) {
       Colors[0] = IEnumColors.Green;
     } else if (qualityEngineering.tddCoverage >= 70 && qualityEngineering.tddCoverage < 80) {
       Colors[0] = IEnumColors.Yellow;
-      Remarks.push(this.formRemarks("TDD coverage is between 70% and 80%=" + qualityEngineering.tddCoverage + "%"));
+      Remarks.push(this.formRemarks("TDD coverage is between 70% and 80%: " + qualityEngineering.tddCoverage + "%"));
     } else {
       Colors[0] = IEnumColors.Red;
-      Remarks.push(this.formRemarks("TDD coverage is less then 70%=" + qualityEngineering.tddCoverage + "%"));
+      Remarks.push(this.formRemarks("TDD coverage is less then 70%: " + qualityEngineering.tddCoverage + "%"));
     }
-    if (qualityEngineering.bddCoverage >= 80) {
+    if (qualityEngineering.bddCoverage >= 80 || qualityEngineering.bddCoverage===0) {
       Colors[1] = IEnumColors.Green;
     } else if (qualityEngineering.bddCoverage >= 65 && qualityEngineering.bddCoverage < 80) {
       Colors[1] = IEnumColors.Yellow;
-      Remarks.push(this.formRemarks("BDD coverage is between 65% and 80%=" + qualityEngineering.bddCoverage + "%"));
+      Remarks.push(this.formRemarks("BDD coverage is between 65% and 80%: " + qualityEngineering.bddCoverage + "%"));
     } else {
       Colors[1] = IEnumColors.Red;
-      Remarks.push(this.formRemarks("BDD coverage is less than 65%=" + qualityEngineering.bddCoverage + "%"));
+      Remarks.push(this.formRemarks("BDD coverage is less than 65%: " + qualityEngineering.bddCoverage + "%"));
     }
-    if (qualityEngineering.mvpAdoption >= 2) {
+    if (qualityEngineering.mvpAdoption >= 2 || qualityEngineering.mvpAdoption === 0) {
       Colors[2] = IEnumColors.Green;
     } else if (qualityEngineering.mvpAdoption = 1) {
       Colors[2] = IEnumColors.Yellow;
@@ -265,13 +265,13 @@ export class ProjectStatusComponent implements OnInit {
       Colors[3] = IEnumColors.Red;
       Remarks.push(this.formRemarks("Major defects identified during  QA code review"));
     }
-    if (qualityEngineering.maintainabilityIndex >= 60) {
+    if (qualityEngineering.maintainabilityIndex >= 60 || qualityEngineering.maintainabilityIndex === 0) {
       Colors[5] = IEnumColors.Green;
     } else {
       Colors[5] = IEnumColors.Red;
       Remarks.push(this.formRemarks("MI less than 60"));
     }
-    if (qualityEngineering.cyclomaticComplexity <= 15) {
+    if (qualityEngineering.cyclomaticComplexity <= 15 || qualityEngineering.cyclomaticComplexity === 0) {
       Colors[6] = IEnumColors.Green;
     } else {
       Colors[6] = IEnumColors.Red;
@@ -297,9 +297,9 @@ export class ProjectStatusComponent implements OnInit {
       Colors[0] = IEnumColors.Red;
       Remarks.push(this.formRemarks("Attrition of resources is greater than 1"));
     }
-    if (availabilityofResource === 'Yes') {
+    if (availabilityofResource.toUpperCase() === 'YES') {
       Colors[1] = IEnumColors.Green;
-    } else if (availabilityofResource === 'Partial') {
+    } else if (availabilityofResource.toUpperCase() === 'PARTIAL') {
       Colors[1] = IEnumColors.Yellow;
       Remarks.push(this.formRemarks("Partial availability of Resource with Required Skillset"));
     } else {
